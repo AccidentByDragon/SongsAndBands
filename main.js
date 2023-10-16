@@ -18,15 +18,18 @@ while (isRunning === true) {
   let userInput = Number(prompt(`Please choose one of the options above: `).trim())
   switch (userInput) {
     case 1:
-      addBand();
+      console.log(`Please enter the following pieces of data:`);
+      addBand(prompt(`the name of the band: `), prompt(`the year the band was formed: `));
       break;
     
     case 2:
-      addMusician();
+      console.log(`Please enter the following pieces of data:`);
+      addMusician(prompt(`the name of the musician: `), Number(prompt(`the year the artist was born as a number: `), prompt(`the roles/instruments the musician plays: `)));
       break;
     
     case 3:
       let editObject = prompt(`Please enter one fo the following to edit: Band or Musician`).trim().toLowerCase();
+      let editIndex = Number(prompt(`Please enter the Index you wish to edit`));
       EditingEntry(editObject);
       break;
     

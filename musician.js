@@ -4,6 +4,7 @@ export default class Musician{
   nameMusician;
   infoTextMusician;
   birthYear;
+  curAge;
   curBandsList;
   prevBandList;
   instruments;
@@ -15,10 +16,16 @@ export default class Musician{
     this.instruments.push(roles);
     this.curBandsList = [];
     this.prevBandList = [];
+    this.updateAge();
   }
 
   addInfoMusician(info) {
     this.infoTextBand = info;
+  }
+
+  updateAge() {
+    let yearForMaths = new Date().getFullYear();
+    this.curAge = this.yearForMaths - this.birthYear;
   }
   
 }

@@ -13,12 +13,12 @@ export default class Band{
     this.listPrevMembers = {};
   }
 
-  addMemberExisting(musician) {
+  addMemberExisting(musician, role, year) {
 
   }
 
-  makeFormerMember(formerMember, year) {
-    this.listMembersCur.filter(musician.nameMusician === formerMember);
+  makeFormerMember(formerMemberIndex, yearLeft) {
+    
   }
 
   addInfo(info) {
