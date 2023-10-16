@@ -12,8 +12,8 @@ export default class Band{
   constructor(name, founding) {
     this.nameBand = name;
     this.yearFounding = founding;
-    this.listMembersCur = [];
-    this.listPrevMembers = [];
+    this.listMembersCur = {};
+    this.listPrevMembers = {};
   }
 
   addMemberExisting(musician) {
@@ -21,11 +21,14 @@ export default class Band{
       let newMusicianName = prompt(`What is this musicians name?: `);
       let newMusicianBirthday = prompt(`What year was this musician born: `);
       let newMusicianRoles = prompt(`What instruments/roles do they play?: `);
-      this.musician = new Musician(newMusicianName, newMusicianBirthday, newMusicianRoles);
-
+      this.musician = new Musician(this.newMusicianName, this.newMusicianBirthday, this.newMusicianRoles);
+      
+      this.listMembersCur[musician.nameMusician] = {
+        name: musician.nameMusician
+      }
     }
     else {
-      this.listMembersCur.push(musician);
+      
     }    
   }
 
