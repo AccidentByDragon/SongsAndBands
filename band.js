@@ -1,5 +1,6 @@
-import Musician from "./musician";
-
+import Musician from "./musician.js";
+import PromptSync from "prompt-sync";
+const prompt = PromptSync({ sigint: true });
 export default class Band{
   nameBand;
   infoTextBand;
@@ -17,9 +18,9 @@ export default class Band{
 
   addMemberExisting(musician) {
     if (musician === undefined) {
-      newMusicianName = prompt(`What is this musicians name?: `);
-      newMusicianBirthday = prompt(`What year was this musician born: `);
-      newMusicianRoles = prompt(`What instruments/roles do they play?: `);
+      let newMusicianName = prompt(`What is this musicians name?: `);
+      let newMusicianBirthday = prompt(`What year was this musician born: `);
+      let newMusicianRoles = prompt(`What instruments/roles do they play?: `);
       this.musician = new Musician(newMusicianName, newMusicianBirthday, newMusicianRoles);
 
     }
