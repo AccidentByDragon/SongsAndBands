@@ -16,5 +16,9 @@ export default class Musician{
     this.curBandsList = [];
     this.prevBandList = [];
   }
+
+  addInfoMusician(info) {
+    this.infoTextBand = info;
+  }
   
 }

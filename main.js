@@ -5,7 +5,19 @@ const prompt = PromptSync({ sigint: true });
 import fs from "fs";
 const jsonstring = fs.readFileSync("data.json");
 const bandsAndMusiciansData = JSON.parse(jsonstring);
-console.log(data);
+console.log(bandsAndMusiciansData);
+
+console.log(`Please enter the following pieces of data:`);
+let nameOfBand = prompt(`the name of the band: `);
+let bandFounding = prompt(`the year the band was formed: `);
+let newBand = new Band(nameOfBand, bandFounding);
+let newBandInfo = prompt(`Please enter some information about the band: `)
+newBand.addInfo(newBandInfo);
+bandsAndMusiciansData.bands[bands.length] = {
+  "Band name: ": newBand.nameBand,
+  "Band Founding: ": newBand.yearFounding,
+  "Band Info:": newBand.infoTextBand
+}
 
 let isRunning = true;
 
@@ -28,11 +40,21 @@ while (isRunning === true) {
       let newBand = new Band(nameOfBand, bandFounding);
       let newBandInfo = prompt(`Please enter some information about the band: `)
       newBand.addInfo(newBandInfo);
-      
+      bandsAndMusiciansData.bands[bands.length] = {
+        "Band name: ": newBand.nameBand,
+        "Band Founding: ": newBand.yearFounding,
+        "Band Info:": newBand.infoTextBand,
+      }
       break;
     
     case 2:
-
+      console.log(`Please enter the following pieces of data:`);
+      let nameOfArtist = prompt(`the name of the musician: `);
+      let dateOfBirt = prompt(`the year the artist was born: `);
+      let artistsRoles = prompt(`the roles/instruments the musician plays: `);
+      let newArtist = new Musician(nameOfArtist, dateOfBirt, artistsRoles);
+      let newMusicianInfo = prompt(`Please enter some information about the musician: `);
+      newArtist.addInfoMusician(newMusicianInfo);
       break;
     
     case 3:
@@ -51,5 +73,9 @@ while (isRunning === true) {
 
       break;
   }
+}
+
+function EditingEntry() {
+  
 }
 
