@@ -1,3 +1,5 @@
+import Musician from "./musician";
+
 export default class Band{
   nameBand;
   infoTextBand;
@@ -13,5 +15,21 @@ export default class Band{
     this.listPrevMembers = [];
   }
 
+  addMemberExisting(musician) {
+    if (musician === undefined) {
+      newMusicianName = prompt(`What is this musicians name?: `);
+      newMusicianBirthday = prompt(`What year was this musician born: `);
+      newMusicianRoles = prompt(`What instruments/roles do they play?: `);
+      this.musician = new Musician(newMusicianName, newMusicianBirthday, newMusicianRoles);
+
+    }
+    else {
+      this.listMembersCur.push(musician);
+    }    
+  }
+
+  makeFormerMember(formerMember, year) {
+    this.listMembersCur.filter(musician.nameMusician === formerMember);
+  }
 
 }
