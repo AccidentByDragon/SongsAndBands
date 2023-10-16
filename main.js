@@ -4,7 +4,7 @@ import PromptSync from "prompt-sync";
 const prompt = PromptSync({ sigint: true });
 import fs from "fs";
 const jsonstring = fs.readFileSync("data.json");
-const data = JSON.parse(jsonstring);
+const bandsAndMusiciansData = JSON.parse(jsonstring);
 console.log(data);
 
 let isRunning = true;
@@ -16,17 +16,35 @@ while (isRunning === true) {
   1. Add a New Band
   2. Add a New Musician
   3. 
-  4. Delete and entry
+  4. Delete an entry
   5. Exit
   `)
-  let userInput = Number(prompt().trim())
+  let userInput = Number(prompt(`Please choose one of the options above: `).trim())
   switch (userInput) {
     case 1:
-
+      console.log(`Please enter the following pieces of data:`);
+      let nameOfBand = prompt(`the name of the band: `);
+      let bandFounding = prompt(`the year the band was formed: `);
+      let newBand = new Band(nameOfBand, bandFounding);
+      let newBandInfo = prompt(`Please enter some information about the band: `)
+      newBand.addInfo(newBandInfo);
+      
       break;
     
     case 2:
 
+      break;
+    
+    case 3:
+
+      break;
+    
+    case 4:
+
+      break;
+    
+    case 5:
+      isRunning = false;
       break;
     
     default:

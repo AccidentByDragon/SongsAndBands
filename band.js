@@ -17,7 +17,7 @@ export default class Band{
   }
 
   addMemberExisting(musician) {
-    if (musician === undefined) {
+/*     if (musician === undefined) {
       let newMusicianName = prompt(`What is this musicians name?: `);
       let newMusicianBirthday = prompt(`What year was this musician born: `);
       let newMusicianRoles = prompt(`What instruments/roles do they play?: `);
@@ -29,11 +29,15 @@ export default class Band{
     }
     else {
       
-    }    
+    }     */
   }
 
   makeFormerMember(formerMember, year) {
     this.listMembersCur.filter(musician.nameMusician === formerMember);
+  }
+
+  addInfo(info) {
+    this.infoTextBand = info;
   }
 
 }
