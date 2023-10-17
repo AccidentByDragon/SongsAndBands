@@ -9,17 +9,18 @@ export default class Musician{
   prevBandList;
   instruments;
 
-  constructor(name, birthdate, roles) {
+  constructor(name, birthdate, roles, info = "") {
     this.nameMusician = name;
     this.birthYear = birthdate;
     this.instruments = [];
     this.instruments.push(roles);
+    this.infoTextMusician = info;
     this.curBandsList = [];
     this.prevBandList = [];
     this.updateAge();
   }
 
-  addInfoMusician(info) {
+  addInfo(info) {
     this.infoTextBand = info;
   }
 
@@ -28,4 +29,7 @@ export default class Musician{
     this.curAge = this.yearForMaths - this.birthYear;
   }
   
+  addBand(bandName, year, RoleInband) {
+    
+  }
 }

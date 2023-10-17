@@ -6,9 +6,10 @@ export default class Band{
   listMembersCur;
   listPrevMembers;
 
-  constructor(name, founding) {
+  constructor(name, founding, info = ``) {
     this.nameBand = name;
     this.yearFounding = founding;
+    this.infoTextBand = info;
     this.listMembersCur = {};
     this.listPrevMembers = {};
   }
@@ -24,5 +25,7 @@ export default class Band{
   addInfo(info) {
     this.infoTextBand = info;
   }
+
+
 
 }
