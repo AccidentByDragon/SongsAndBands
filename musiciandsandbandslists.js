@@ -13,7 +13,7 @@ export default class MusiciansAndBandsList {
   }
 
   #fetchLists() {
-    const jsonstringBands = fs.readFileSync("databands.json");
+    const jsonstringBands = fs.readFileSync("dataBands.json");
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
@@ -29,27 +29,13 @@ export default class MusiciansAndBandsList {
     let tempBand = new Band(nameBand, bandFounding);
     this.addInfoBand(tempBand);
     this.#bandsList.push(tempBand);
-    this.#UpdateJsonFile();
+    this.#UpdateJsonFiles();
   }
   addMusician(nameOfArtist, dateOfBirth, artistsRoles) {
     let tempMusician = new Musician(nameOfArtist, dateOfBirth, artistsRoles);
     this.addInfoMusician(tempMusician);
     this.#musiciansList.push(tempMusician);
-    this.#UpdateJsonFile();
-  } 
-
-
-  EditingEntry(listToEdit, indexToEdit) {
-    if (listToEdit === "band") {
-      
-    }
-    else if (listToEdit === "musician" || listToEdit === "artist") {
-
-    }
-    else {
-      console.log(`The object you wish to enter is not a valid entry, please try again`);
-      console.log(`returning to the menu`);
-    }
+    this.#UpdateJsonFiles();
   }
 
   readList() {
@@ -60,6 +46,18 @@ export default class MusiciansAndBandsList {
     console.log(`Here are the currently stored Artists and Musicians`)
     for (let i = 0; i < this.#musiciansList.length; i++) {
       console.log(`${i+1}: ${this.#musiciansList[i].nameMusician}`);   
+    }
+  }
+  EditingEntry(listToEdit, indexToEdit) {
+    if (listToEdit === "band") {
+
+    }
+    else if (listToEdit === "musician" || listToEdit === "artist") {
+
+    }
+    else {
+      console.log(`The object you wish to enter is not a valid entry, please try again`);
+      console.log(`returning to the menu`);
     }
   }
 
@@ -78,13 +76,18 @@ export default class MusiciansAndBandsList {
   }
 
 
-  #UpdateJsonFile() {
-    fs.writeFile('data.json', JSON.stringify(bandsAndMusiciansData, null, 2), (err) => {
+  #UpdateJsonFiles() {
+    fs.writeFile('dataBands.json', JSON.stringify(this.#bandsList, null, 2), (err) => {
+      if (err) throw err;
+      console.log(`data written to file`)
+    });
+    fs.writeFile('datamusicians.json', JSON.stringify(this.#musiciansList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });
   }
 }
+
   
 
 
