@@ -77,11 +77,11 @@ export default class MusiciansAndBandsList {
 
 
   #UpdateJsonFiles() {
-    fs.writeFile('dataBands.json', JSON.stringify(this.#bandsList, null, 2), (err) => {
+    fs.writeFileSync('dataBands.json', JSON.stringify(this.#bandsList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });
-    fs.writeFile('datamusicians.json', JSON.stringify(this.#musiciansList, null, 2), (err) => {
+    fs.writeFileSync('datamusicians.json', JSON.stringify(this.#musiciansList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });
