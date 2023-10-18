@@ -1,3 +1,13 @@
 [
-  
+  {
+    "name": "Bob",
+    "info": "bob",
+    "roles": [
+      null
+    ],
+    "currentBands": [],
+    "previousBands": [
+      "was a member of Bob on the Guitar as a Guitarist, they joined 2023 and left the band 2023"
+    ]
+  }
 ]

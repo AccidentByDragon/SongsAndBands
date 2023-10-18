@@ -38,7 +38,7 @@ export default class Musician{
   }
   
   addBand(bandName, roleInband, year) {
-    this.#curBandsList.push(`was a member of${bandName} as a ${roleInband}, they joined ${year}`)
+    this.#curBandsList.push(`was a member of ${bandName} as a ${roleInband}, they joined ${year}`)
   }
 
   removeBand(formerBandIndex, yearLeft) {
@@ -55,11 +55,11 @@ export default class Musician{
   fetchInfo() {
     return {
       "name": this.nameMusician,
-      "Info": this.infoTextMusician,
-      "Birthdate": this.birthYear,
-      "Roles and Instruments": this.instruments,
-      "Current Bands": this.#curBandsList,
-      "Previous Bands": this.#prevBandList
+      "info": this.infoTextMusician,
+      "birthdate": this.birthYear,
+      "roles": this.instruments,
+      "currentBands": this.#curBandsList,
+      "previousBands": this.#prevBandList
     }
   }
 

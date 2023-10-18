@@ -13,7 +13,7 @@ while (isRunning === true) {
   1. Add a new band
   2. Add a new musician
   3. Print lists
-  4. Add Mmsician to band
+  4. Add musician to band
   5. Remove musician from band
   6. Delete a musician or band
   7. Exit
@@ -27,8 +27,7 @@ while (isRunning === true) {
     
     case 2:
       console.log(`Please enter the following pieces of data:`);
-      bandandMusicianList.addMusician(prompt(`the name of the musician: `), Number(prompt(`the year the artist was born as a number: `), prompt(`the roles/instruments the musician plays: `)));
-      bandandMusicianList.addInfo()
+      bandandMusicianList.addMusician(prompt(`the name of the musician: `), Number(prompt(`the year the artist was born as a number: `), prompt(`the roles/instruments the musician plays: `)));      
       break;
     
     case 3:
@@ -36,7 +35,7 @@ while (isRunning === true) {
       break;
     case 4:
       console.log(`Please enter the following:`)
-      bandandMusicianList.AddMusicianToBand(prompt(`Please enter the index of the musician you wish to add to a band: `), prompt(`please enter the idnex of the band to add the musician too: `));
+      bandandMusicianList.addMusicianToBand(prompt(`Please enter the index of the musician you wish to add to a band: `), prompt(`please enter the idnex of the band to add the musician too: `));
       break;
     
     case 5:
@@ -44,7 +43,7 @@ while (isRunning === true) {
       bandandMusicianList.removeMusicanFormBand(prompt(`Please enter the index of the musician you want to remove from a band: `), prompt(`Please enter the index fo the band you wish to remove them from: `), prompt(`Please enter the year they left the band: `))
       break;
     case 6:
-      bandandMusicianList.deleteEntry();
+      bandandMusicianList.deleteEntry(prompt(`Please enter which lsit you want to remove from, musician or band:`), prompt(`Please enter the Index of what you wish to delete`));
       break;
     
     case 7:

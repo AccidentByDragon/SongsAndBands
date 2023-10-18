@@ -17,11 +17,11 @@ export default class MusiciansAndBandsList {
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
-      this.#bandsList.push(new Band(dataBandsList[i].nameBand, dataBandsList[i].yearFounding, dataBandsList[i].infoTextBand));      
+      this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].infoTextBand, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
     }
     const dataMusiciansList = JSON.parse(jsonstringMusicians);
     for (let i = 0; i < dataMusiciansList.length; i++) {
-      this.#musiciansList.push(new Musician(dataMusiciansList[i].nameMusician, dataMusiciansList[i].birthYear, dataMusiciansList[i].instruments, dataMusiciansList[i].infoTextMusician));
+      this.#musiciansList.push(new Musician(dataMusiciansList[i].name, dataMusiciansList[i].birthYear, dataMusiciansList[i].instruments, dataMusiciansList[i].info, dataMusiciansList[i].currentBands, dataMusiciansList[i].previousBands));
     }
   }
   
@@ -41,30 +41,38 @@ export default class MusiciansAndBandsList {
   readList() {
     console.log(`Here are the currently stored Bands`)
     for (let i = 0; i < this.#bandsList.length; i++) {
-      console.log(`${i + 1}: ${this.#bandsList[i].nameBand}`);      
+      console.log(`${i+1}: ${this.#bandsList[i].nameBand}`);
+      //console.log(`${i+1}: ${this.#bandsList[i].fetchInfoBand()}`);
     }
     console.log(`Here are the currently stored Artists and Musicians`)
     for (let i = 0; i < this.#musiciansList.length; i++) {
-      console.log(`${i+1}: ${this.#musiciansList[i].nameMusician}`);   
+      console.log(`${i + 1}: ${this.#musiciansList[i].nameMusician}`);
+      //console.log(`${i+1}: ${this.#musiciansList[i].fetchInfo()}`);   
     }
   }
 
   addMusicianToBand(indexMusician, indexBand) {
-    this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician-1].nameMusician, prompt(`Please enter the Role the musician had: `), prompt(`Please enter the year the musician joined the band: `));
-    this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, prompt(`Please enter the role the Musician had in the band: `), prompt(`Please enter the year the Musician joined the band`));
+    let tempRole = prompt(`Please enter the role the Musician had in the band: `);
+    let tempYear = prompt(`Please enter the year the Musician joined the band`);
+    this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician-1].nameMusician, tempRole, tempYear);
+    this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, tempRole, tempYear);
+    this.#UpdateJsonFiles();
   }
 
   removeMusicanFormBand(indexMusician, indexBand, yearSplit) {
-    this.#bandsList[indexBand - 1].makeFormerMember(findBandMember(this.#musiciansList[indexMusician - 1].nameMusician),yearSplit);
-    this.#musiciansList[indexMusician - 1].removeBand(findBand(this.#bandsList[indexBand - 1].nameBand),yearSplit);
+    this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician),yearSplit);
+    this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
+    this.#UpdateJsonFiles();
   }
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
     if (listToDeleteFrom === "band") {
       this.#bandsList.splice(indexToDelete, 1)
+      this.#UpdateJsonFiles();
     }
     else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
       this.#musiciansList.splice(indexToDelete, 1)
+      this.#UpdateJsonFiles();
     }
     else {
       console.log(`The object you wish to enter is not a valid entry, please try again`);
@@ -86,11 +94,11 @@ export default class MusiciansAndBandsList {
   #UpdateJsonFiles() {
     let tempBandList = [];
     for (let i = 0; i < this.#bandsList.length; i++) {
-      tempBandList.push(this.#bandsList[i].fectchInfoBand());      
+      tempBandList.push(this.#bandsList[i].fetchInfoBand());      
     }
     let tempMusicianList = [];
     for (let i = 0; i < this.#musiciansList.length; i++) {
-      tempMusicianList.push(this.#musiciansList[i].fectchInfoBand());        
+      tempMusicianList.push(this.#musiciansList[i].fetchInfo());        
     }
     fs.writeFileSync('dataBands.json', JSON.stringify(tempBandList, null, 2), (err) => {
       if (err) throw err;
