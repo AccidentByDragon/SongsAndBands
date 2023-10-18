@@ -48,21 +48,23 @@ export default class MusiciansAndBandsList {
       console.log(`${i+1}: ${this.#musiciansList[i].nameMusician}`);   
     }
   }
-  EditingEntry(listToEdit, indexToEdit) {
-    if (listToEdit === "band") {
+
+  AddMusicianToBand(indexMusician, indexBand) {
+    this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician-1].nameMusician, prompt(`Please enter the Role the musician had: `), prompt(`Please enter the year the musician joined the band: `));
+    this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, prompt(`Please enter the role the Musician had in the band: `), prompt(`Please enter the year the Musician joined the band`));
+  }
+
+  deleteEntry(listToDeleteFrom,indexToDelete) {
+    if (listToDeleteFrom === "band") {
 
     }
-    else if (listToEdit === "musician" || listToEdit === "artist") {
+    else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
 
     }
     else {
       console.log(`The object you wish to enter is not a valid entry, please try again`);
       console.log(`returning to the menu`);
     }
-  }
-
-  deleteEntry(listToDeleteFrom,indexToDelete) {
-
   }
 
   addInfoBand(band) {

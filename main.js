@@ -13,7 +13,7 @@ while (isRunning === true) {
   1. Add a New Band
   2. Add a New Musician
   3. Print Lists
-  4. Edit an entry
+  4. Add Musicina to band
   5. Delete an entry
   6. Exit
   `)
@@ -34,9 +34,8 @@ while (isRunning === true) {
       bandandMusicianList.readList();
       break;
     case 4:
-      let editObject = prompt(`Please enter one fo the following to edit: Band or Musician`).trim().toLowerCase();
-      let editIndex = Number(prompt(`Please enter the Index you wish to edit`));
-      bandandMusicianList.EditingEntry(editObject, editIndex);
+      console.log(`Please enter the following:`)
+      bandandMusicianList.AddMusicianToBand(prompt(`Please enter the index of the musician you wish to add to a band: `), prompt(`please enter the idnex of the band to add the musician too: `));
       break;
     
     case 5:
