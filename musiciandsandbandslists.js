@@ -67,11 +67,11 @@ export default class MusiciansAndBandsList {
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
     if (listToDeleteFrom === "band") {
-      this.#bandsList.splice(indexToDelete, 1)
+      this.#bandsList.splice(indexToDelete -1, 1)
       this.#UpdateJsonFiles();
     }
     else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
-      this.#musiciansList.splice(indexToDelete, 1)
+      this.#musiciansList.splice(indexToDelete -1, 1)
       this.#UpdateJsonFiles();
     }
     else {

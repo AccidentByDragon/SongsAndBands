@@ -13,7 +13,7 @@ export default class Musician{
     this.nameMusician = name;
     this.birthYear = birthdate;
     this.instruments = [];
-    this.instruments.push(roles);
+    this.instruments.push(roles); // this is currently broken
     this.infoTextMusician = info;
     this.#curBandsList = curBands;
     this.#prevBandList = preBands;
