@@ -49,9 +49,13 @@ export default class MusiciansAndBandsList {
     }
   }
 
-  AddMusicianToBand(indexMusician, indexBand) {
+  addMusicianToBand(indexMusician, indexBand) {
     this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician-1].nameMusician, prompt(`Please enter the Role the musician had: `), prompt(`Please enter the year the musician joined the band: `));
     this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, prompt(`Please enter the role the Musician had in the band: `), prompt(`Please enter the year the Musician joined the band`));
+  }
+
+  removeMusicanFormBand(indexMusician, indexBand) {
+    this.#bandsList
   }
 
   deleteEntry(listToDeleteFrom,indexToDelete) {

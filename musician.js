@@ -37,6 +37,11 @@ export default class Musician{
     this.#curBandsList.push(`was a member of${bandName} as a ${roleInband}, they joined ${year}`)
   }
 
+  removeBand(formerBandIndex, yearLeft) {
+    const tempString = (this.#curBandsList.splice(formerBandIndex - 1, 1).toString());
+    this.#prevBandList.push(`${tempString} and left the band ${yearLeft}`);
+  }
+
   readBandsList() {
     
   }
