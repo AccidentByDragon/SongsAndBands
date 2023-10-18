@@ -40,10 +40,14 @@ while (isRunning === true) {
       break;
     
     case 5:
+      console.log(`Please enter the following:`)
+      bandandMusicianList.removeMusicanFormBand(prompt(`Please enter the index of the musician you want to remove from a band: `), prompt(`Please enter the index fo the band you wish to remove them from: `), prompt(`Please enter the year they left the band: `))
+      break;
+    case 6:
       bandandMusicianList.deleteEntry();
       break;
     
-    case 6:
+    case 7:
       isRunning = false;
       break;
     
