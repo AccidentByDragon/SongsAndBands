@@ -84,11 +84,19 @@ export default class MusiciansAndBandsList {
 
 
   #UpdateJsonFiles() {
-    fs.writeFileSync('dataBands.json', JSON.stringify(this.#bandsList, null, 2), (err) => {
+    let tempBandList = [];
+    for (let i = 0; i < this.#bandsList.length; i++) {
+      tempBandList.push(this.#bandsList[i].fectchInfoBand());      
+    }
+    let tempMusicianList = [];
+    for (let i = 0; i < this.#musiciansList.length; i++) {
+      tempMusicianList.push(this.#musiciansList[i].fectchInfoBand());        
+    }
+    fs.writeFileSync('dataBands.json', JSON.stringify(tempBandList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });
-    fs.writeFileSync('datamusicians.json', JSON.stringify(this.#musiciansList, null, 2), (err) => {
+    fs.writeFileSync('datamusicians.json', JSON.stringify(tempMusicianList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });

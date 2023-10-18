@@ -6,12 +6,13 @@ export default class Band{
   #listMembersCur;
   #listPrevMembers;
 
-  constructor(name, founding, info = ``) {
+  constructor(name, founding, info = ``,yearDisbanded = 0) {
     this.nameBand = name;
     this.yearFounding = founding;
     this.infoTextBand = info;
     this.#listMembersCur = [];
     this.#listPrevMembers = [];
+    this.yearDisbanding = yearDisbanded;
   }
 
   addMemberExisting(musician, role, year) {
@@ -31,6 +32,16 @@ export default class Band{
     this.infoTextBand = info;
   }
 
+  fectchInfoBand() {
+    return {
+      "Band Name": this.nameBand,
+      "Founding year": this.yearFounding,
+      "Disbanding year": this.yearDisbanding,
+      "Info": this.infoTextBand,
+      "Current Members": this.#listMembersCur,
+      "Previous Members": this.#listPrevMembers
+    }
+  }
 
 
 }

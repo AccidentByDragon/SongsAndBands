@@ -2,26 +2,26 @@ import PromptSync from "prompt-sync";
 const prompt = PromptSync({ sigint: true });
 export default class Musician{
   nameMusician;
-  #infoTextMusician;
+  infoTextMusician;
   birthYear;
-  curAge;
+  #curAge;
   #curBandsList;
   #prevBandList;
-  #instruments;
+  instruments;
 
-  constructor(name, birthdate, roles, info = "") {
+  constructor(name, birthdate, roles, info = "", curBands = [], preBands = []) {
     this.nameMusician = name;
     this.birthYear = birthdate;
-    this.#instruments = [];
-    this.#instruments.push(roles);
-    this.#infoTextMusician = info;
-    this.#curBandsList = [];
-    this.#prevBandList = [];
+    this.instruments = [];
+    this.instruments.push(roles);
+    this.infoTextMusician = info;
+    this.#curBandsList = curBands;
+    this.#prevBandList = preBands;
     this.updateAge();
   }
 
   addInfo(info) {
-    this.#infoTextMusician = info;
+    this.infoTextMusician = info;
   }
 
   updateAge() {
@@ -34,7 +34,7 @@ export default class Musician{
   }
 
   addRole(inputRole) {
-    this.#instruments.push(inputRole);    
+    this.instruments.push(inputRole);    
   }
   
   addBand(bandName, roleInband, year) {
@@ -47,6 +47,21 @@ export default class Musician{
   }
 
   readBandsList() {
-    
+    for (let i = 0; i < this.#curBandsList.length; i++) {
+      console.log(`${i+1}: ${this.#curBandsList[i]}`);
+    }
   }
+
+  fetchInfo() {
+    return {
+      "name": this.nameMusician,
+      "Info": this.infoTextMusician,
+      "Birthdate": this.birthYear,
+      "Roles and Instruments": this.instruments,
+      "Current Bands": this.#curBandsList,
+      "Previous Bands": this.#prevBandList
+    }
+  }
+
+
 }
