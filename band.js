@@ -18,6 +18,10 @@ export default class Band{
     this.#listMembersCur.push(`${musician} was a member as a ${role}, they joined ${year}`)
   }
 
+  findBandMember(nameToFind){
+    
+  }
+
   makeFormerMember(formerMemberIndex, yearLeft) {
     const tempString = (this.#listMembersCur.splice(formerMemberIndex - 1, 1).toString());
     this.#listPrevMembers.push(`${tempString} and left the band ${yearLeft}`);

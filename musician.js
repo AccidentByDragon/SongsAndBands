@@ -29,6 +29,10 @@ export default class Musician{
     this.curAge = this.yearForMaths - this.birthYear;
   }
 
+  findBand(searchString) {
+    
+  }
+
   addRole(inputRole) {
     this.#instruments.push(inputRole);    
   }
