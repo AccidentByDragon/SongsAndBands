@@ -10,12 +10,13 @@ while (isRunning === true) {
   console.log(`Musician and Bands
   What do you want to do?:
 
-  1. Add a New Band
-  2. Add a New Musician
-  3. Print Lists
-  4. Add Musicina to band
-  5. Delete an entry
-  6. Exit
+  1. Add a new band
+  2. Add a new musician
+  3. Print lists
+  4. Add Mmsician to band
+  5. Remove musician from band
+  6. Delete a musician or band
+  7. Exit
   `)
   let userInput = Number(prompt(`Please choose one of the options above: `).trim())
   switch (userInput) {

@@ -61,10 +61,10 @@ export default class MusiciansAndBandsList {
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
     if (listToDeleteFrom === "band") {
-
+      this.#bandsList.splice(indexToDelete, 1)
     }
     else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
-
+      this.#musiciansList.splice(indexToDelete, 1)
     }
     else {
       console.log(`The object you wish to enter is not a valid entry, please try again`);

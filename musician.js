@@ -30,7 +30,7 @@ export default class Musician{
   }
 
   findBand(searchString) {
-    
+    this.#curBandsList.indexOf(element => element.includes(searchString));
   }
 
   addRole(inputRole) {

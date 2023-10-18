@@ -19,7 +19,7 @@ export default class Band{
   }
 
   findBandMember(nameToFind){
-    
+    this.#listMembersCur.indexOf(element => element.includes(nameToFind));
   }
 
   makeFormerMember(formerMemberIndex, yearLeft) {
