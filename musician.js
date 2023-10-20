@@ -9,11 +9,10 @@ export default class Musician{
   #prevBandList;
   instruments;
 
-  constructor(name, birthdate, roles, info = "", curBands = [], preBands = []) {
+  constructor(name, birthdate, roles = [], info = "", curBands = [], preBands = []) {
     this.nameMusician = name;
     this.birthYear = birthdate;
     this.instruments = [];
-    this.instruments.push(roles); // this is currently broken
     this.infoTextMusician = info;
     this.#curBandsList = curBands;
     this.#prevBandList = preBands;

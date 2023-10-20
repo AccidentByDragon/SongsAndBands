@@ -32,8 +32,9 @@ export default class MusiciansAndBandsList {
     this.#UpdateJsonFiles();
   }
   addMusician(nameOfArtist, dateOfBirth, artistsRoles) {
-    let tempMusician = new Musician(nameOfArtist, dateOfBirth, artistsRoles);
+    let tempMusician = new Musician(nameOfArtist, dateOfBirth);
     this.addInfoMusician(tempMusician);
+    this.addRolesMusician(tempMusician, artistsRoles);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
   }
@@ -78,6 +79,10 @@ export default class MusiciansAndBandsList {
       console.log(`The object you wish to enter is not a valid entry, please try again`);
       console.log(`returning to the menu`);
     }
+  }
+
+  addRolesMusician(musician, inputRoles) {
+    musician.addRole(inputRoles);
   }
 
   addInfoBand(band) {
