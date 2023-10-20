@@ -88,7 +88,7 @@ export default class MusiciansAndBandsList {
         console.log(`The index you entered to delete does not exist in the list, please try again`);
       }
     }
-    else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
+    else if (listToDeleteFrom === "musician") {
       if (indexToDelete <= this.#musiciansList.length && indexToDelete >= 1){
         this.#musiciansList.splice(indexToDelete -1, 1)
         this.#UpdateJsonFiles();
