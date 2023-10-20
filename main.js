@@ -41,9 +41,9 @@ while (isRunning === true) {
     case 4:
       console.log(`Please enter the following:`);
       const tempMusicianAddIndex = prompt(`Please enter the index of the musician you wish to add to a band: `);
-      const tempBandAddIndex = prompt(`please enter the idnex of the band to add the musician too: `);
+      const tempBandAddIndex = prompt(`please enter the index of the band to add the musician too: `);
       const tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
-      const tempJoinYear = prompt(`Please enter the year the Musician joined the band`);
+      const tempJoinYear = prompt(`Please enter the year the Musician joined the band: `);
       bandandMusicianList.addMusicianToBand(tempMusicianAddIndex,tempBandAddIndex, tempBandRole, tempJoinYear );
       break;
     
@@ -56,7 +56,7 @@ while (isRunning === true) {
       break;
     case 6:
       console.log(`Please enter the following: `);
-      const tempListName = prompt(`Please enter which lsit you want to remove from, musician or band: `);
+      const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `);
       const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
       bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
       break;
@@ -66,7 +66,7 @@ while (isRunning === true) {
       break;
     
     default:
-      console.log(`Your input was wrong or does not exist please try again!`);
+      console.log(`Something went worng with your input or it does not exist please try again!`);
       break;
   }
 }
