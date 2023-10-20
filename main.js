@@ -39,16 +39,24 @@ while (isRunning === true) {
       bandandMusicianList.readList();
       break;
     case 4:
-      console.log(`Please enter the following:`)
-      bandandMusicianList.addMusicianToBand(prompt(`Please enter the index of the musician you wish to add to a band: `), prompt(`please enter the idnex of the band to add the musician too: `));
+      console.log(`Please enter the following:`);
+      const tempMusicianAddIndex = prompt(`Please enter the index of the musician you wish to add to a band: `);
+      const tempBandAddIndex = prompt(`please enter the idnex of the band to add the musician too: `);
+      bandandMusicianList.addMusicianToBand(tempMusicianAddIndex,tempBandAddIndex );
       break;
     
     case 5:
-      console.log(`Please enter the following:`)
-      bandandMusicianList.removeMusicanFormBand(prompt(`Please enter the index of the musician you want to remove from a band: `), prompt(`Please enter the index fo the band you wish to remove them from: `), prompt(`Please enter the year they left the band: `))
+      console.log(`Please enter the following:`);
+      const tempMusicianIndex = prompt(`Please enter the index of the musician you want to remove from a band: `);
+      const tempBandIndex = prompt(`Please enter the index fo the band you wish to remove them from: `);
+      const tempPartingDate = prompt(`Please enter the year they left the band: `);
+      bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
       break;
     case 6:
-      bandandMusicianList.deleteEntry(prompt(`Please enter which lsit you want to remove from, musician or band:`), prompt(`Please enter the Index of what you wish to delete`));
+      console.log(`Please enter the following: `);
+      const tempListName = prompt(`Please enter which lsit you want to remove from, musician or band: `);
+      const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
+      bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
       break;
     
     case 7:
@@ -56,7 +64,7 @@ while (isRunning === true) {
       break;
     
     default:
-      console.log(``);
+      console.log(`Your input was wrong or does not exist please try again!`);
       break;
   }
 }
