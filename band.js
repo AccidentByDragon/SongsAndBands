@@ -6,7 +6,7 @@ export default class Band{
   #listMembersCur;
   #listPrevMembers;
 
-  constructor(name, founding, info = ``, yearDisbanded = Date(), curMembers=[], preMembers=[]) {
+  constructor(name, founding, info = ``, yearDisbanded = new Date().getFullYear(), curMembers=[], preMembers=[]) {
     this.nameBand = name;
     this.yearFounding = founding;
     this.infoTextBand = info;

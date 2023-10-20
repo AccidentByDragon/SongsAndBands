@@ -45,7 +45,7 @@ export default class MusiciansAndBandsList {
     console.log(`Here are the currently stored Bands`)
     for (let i = 0; i < this.#bandsList.length; i++) {
       console.log(`${i+1}: ${this.#bandsList[i].nameBand}`);
-      this.#musiciansList[i].printInfoBand();   
+      this.#bandsList[i].printInfoBand();   
     }
     console.log(`Here are the currently stored Artists and Musicians`)
     for (let i = 0; i < this.#musiciansList.length; i++) {
@@ -54,28 +54,48 @@ export default class MusiciansAndBandsList {
     }
   }
 
-  addMusicianToBand(indexMusician, indexBand) {
-    let tempRole = prompt(`Please enter the role the Musician had in the band: `);
-    let tempYear = prompt(`Please enter the year the Musician joined the band`);
-    this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician-1].nameMusician, tempRole, tempYear);
-    this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, tempRole, tempYear);
-    this.#UpdateJsonFiles();
+  addMusicianToBand(indexMusician, indexBand, bandRole, joinedYear) {
+    if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {
+      this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician - 1].nameMusician, bandRole, joinedYear);
+      this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, bandRole, joinedYear);
+      this.#UpdateJsonFiles();
+    }
+    else {
+      console.log(`The Index you entered to delete does not exist in the list, please try again`);
+    }
+
   }
 
   removeMusicanFormBand(indexMusician, indexBand, yearSplit) {
-    this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician),yearSplit);
-    this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
-    this.#UpdateJsonFiles();
+    if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {
+      this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician),yearSplit);
+      this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
+      this.#UpdateJsonFiles();
+    }
+    else {
+      console.log(`The Index you entered to delete does not exist in the list, please try again`);
+    }
+
   }
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
     if (listToDeleteFrom === "band") {
-      this.#bandsList.splice(indexToDelete -1, 1)
-      this.#UpdateJsonFiles();
+      if (indexToDelete <= this.#bandsList.length && indexToDelete >= 1) {
+        this.#bandsList.splice(indexToDelete -1, 1)
+        this.#UpdateJsonFiles();
+      }
+      else {
+        console.log(`The Index you entered to delete does not exist in the list, please try again`);
+      }
     }
     else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
-      this.#musiciansList.splice(indexToDelete -1, 1)
-      this.#UpdateJsonFiles();
+      if (indexToDelete <= this.#musiciansList.length && indexToDelete >= 1){
+        this.#musiciansList.splice(indexToDelete -1, 1)
+        this.#UpdateJsonFiles();
+      }
+      else {
+        console.log(`The Index you entered to delete does not exist in the list, please try again`);
+      }
     }
     else {
       console.log(`The object you wish to enter is not a valid entry, please try again`);

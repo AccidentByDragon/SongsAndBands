@@ -42,7 +42,9 @@ while (isRunning === true) {
       console.log(`Please enter the following:`);
       const tempMusicianAddIndex = prompt(`Please enter the index of the musician you wish to add to a band: `);
       const tempBandAddIndex = prompt(`please enter the idnex of the band to add the musician too: `);
-      bandandMusicianList.addMusicianToBand(tempMusicianAddIndex,tempBandAddIndex );
+      const tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
+      const tempJoinYear = prompt(`Please enter the year the Musician joined the band`);
+      bandandMusicianList.addMusicianToBand(tempMusicianAddIndex,tempBandAddIndex, tempBandRole, tempJoinYear );
       break;
     
     case 5:
