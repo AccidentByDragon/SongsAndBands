@@ -22,12 +22,17 @@ while (isRunning === true) {
   switch (userInput) {
     case 1:
       console.log(`Please enter the following pieces of data:`);
-      bandandMusicianList.addBand(prompt(`the name of the band: `), Number(prompt(`the year the band was formed: `)));
+      const tempBandName = prompt(`the name of the band: `);
+      const tempBandDate = Number(prompt(`the year the band was formed: `));
+      bandandMusicianList.addBand( tempBandName, tempBandDate);
       break;
     
     case 2:
       console.log(`Please enter the following pieces of data:`);
-      bandandMusicianList.addMusician(prompt(`the name of the musician: `), Number(prompt(`the year the artist was born as a number: `), prompt(`the roles/instruments the musician plays: `)));      
+      const tempName = prompt(`the name of the musician: `);
+      const tempDate = Number(prompt(`the year the artist was born as a number: `));
+      const tempRole = prompt(`the roles/instruments the musician plays: `);
+      bandandMusicianList.addMusician(tempName, tempDate, tempRole);      
       break;
     
     case 3:
@@ -51,7 +56,7 @@ while (isRunning === true) {
       break;
     
     default:
-
+      console.log(``);
       break;
   }
 }

@@ -6,7 +6,7 @@ export default class Band{
   #listMembersCur;
   #listPrevMembers;
 
-  constructor(name, founding, info = ``, yearDisbanded = 0, curMembers=[], preMembers=[]) {
+  constructor(name, founding, info = ``, yearDisbanded = Date(), curMembers=[], preMembers=[]) {
     this.nameBand = name;
     this.yearFounding = founding;
     this.infoTextBand = info;
@@ -43,5 +43,15 @@ export default class Band{
     }
   }
 
+  printInfoBand() {2
+    console.log(`
+    Band name: ${this.nameBand},
+    Founded in the year: ${this.yearFounding}
+    Active till: ${this.yearDisbanding}
+    Current Members: ${this.#listMembersCur}
+    Previous members: ${this.#listPrevMembers}
+    other info: ${this.infoTextBand}
+    `)
+  }
 
 }

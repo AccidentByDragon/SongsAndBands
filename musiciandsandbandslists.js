@@ -2,6 +2,7 @@ import fs from "fs";
 import Band from "./band.js";
 import Musician from "./musician.js";
 import PromptSync from "prompt-sync";
+import { log } from "console";
 const prompt = PromptSync({ sigint: true });
 
 export default class MusiciansAndBandsList {
@@ -35,6 +36,7 @@ export default class MusiciansAndBandsList {
     let tempMusician = new Musician(nameOfArtist, dateOfBirth);
     this.addInfoMusician(tempMusician);
     this.addRolesMusician(tempMusician, artistsRoles);
+    console.log(artistsRoles);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
   }
@@ -43,12 +45,12 @@ export default class MusiciansAndBandsList {
     console.log(`Here are the currently stored Bands`)
     for (let i = 0; i < this.#bandsList.length; i++) {
       console.log(`${i+1}: ${this.#bandsList[i].nameBand}`);
-      //console.log(`${i+1}: ${this.#bandsList[i].fetchInfoBand()}`);
+      this.#musiciansList[i].printInfoBand();   
     }
     console.log(`Here are the currently stored Artists and Musicians`)
     for (let i = 0; i < this.#musiciansList.length; i++) {
       console.log(`${i + 1}: ${this.#musiciansList[i].nameMusician}`);
-      //console.log(`${i+1}: ${this.#musiciansList[i].fetchInfo()}`);   
+      this.#musiciansList[i].printInfoMusician();
     }
   }
 

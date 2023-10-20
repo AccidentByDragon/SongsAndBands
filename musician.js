@@ -12,7 +12,7 @@ export default class Musician{
   constructor(name, birthdate, roles = [], info = "", curBands = [], preBands = []) {
     this.nameMusician = name;
     this.birthYear = birthdate;
-    this.instruments = [];
+    this.instruments = roles;
     this.infoTextMusician = info;
     this.#curBandsList = curBands;
     this.#prevBandList = preBands;
@@ -25,7 +25,7 @@ export default class Musician{
 
   updateAge() {
     let yearForMaths = new Date().getFullYear();
-    this.curAge = this.yearForMaths - this.birthYear;
+    this.#curAge = yearForMaths - this.birthYear;
   }
 
   findBand(searchString) {
@@ -33,7 +33,7 @@ export default class Musician{
   }
 
   addRole(inputRole) {
-    this.instruments.push(inputRole);    
+    this.instruments.push(`${inputRole}`);
   }
   
   addBand(bandName, roleInband, year) {
@@ -62,5 +62,14 @@ export default class Musician{
     }
   }
 
+  printInfoMusician() {
+    console.log(`
+    Name: ${this.nameMusician}
+    Age: ${this.#curAge}
+    Born: ${this.birthYear}
+    Roles/Instruments: ${this.instruments}
+    Current Bands: ${this.#curBandsList}
+    Previous Bands: ${this.#prevBandList}`);
+  }
 
 }
