@@ -61,7 +61,7 @@ export default class MusiciansAndBandsList {
       this.#UpdateJsonFiles();
     }
     else {
-      console.log(`The Index you entered to delete does not exist in the list, please try again`);
+      console.log(`One or more of the indexes you entered to add to a band does not exist in the list, please try again`);
     }
 
   }
@@ -73,7 +73,7 @@ export default class MusiciansAndBandsList {
       this.#UpdateJsonFiles();
     }
     else {
-      console.log(`The Index you entered to delete does not exist in the list, please try again`);
+      console.log(`One or more of the indexes you entered to remove form a band does not exist in the list, please try again`);
     }
 
   }
@@ -85,7 +85,7 @@ export default class MusiciansAndBandsList {
         this.#UpdateJsonFiles();
       }
       else {
-        console.log(`The Index you entered to delete does not exist in the list, please try again`);
+        console.log(`The index you entered to delete does not exist in the list, please try again`);
       }
     }
     else if (listToDeleteFrom === "musician" || listToDeleteFrom === "artist") {
@@ -94,7 +94,7 @@ export default class MusiciansAndBandsList {
         this.#UpdateJsonFiles();
       }
       else {
-        console.log(`The Index you entered to delete does not exist in the list, please try again`);
+        console.log(`The index you entered to delete does not exist in the list, please try again`);
       }
     }
     else {

@@ -33,7 +33,7 @@ export default class Musician{
   }
 
   addRole(inputRole) {
-    this.instruments.push(`${inputRole}`);
+    this.instruments.push(inputRole);
   }
   
   addBand(bandName, roleInband, year) {
