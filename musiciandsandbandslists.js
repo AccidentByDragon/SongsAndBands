@@ -18,11 +18,11 @@ export default class MusiciansAndBandsList {
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
-      this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].infoTextBand, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
+      this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].info, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
     }
     const dataMusiciansList = JSON.parse(jsonstringMusicians);
     for (let i = 0; i < dataMusiciansList.length; i++) {
-      this.#musiciansList.push(new Musician(dataMusiciansList[i].name, dataMusiciansList[i].birthYear, dataMusiciansList[i].instruments, dataMusiciansList[i].info, dataMusiciansList[i].currentBands, dataMusiciansList[i].previousBands));
+      this.#musiciansList.push(new Musician(dataMusiciansList[i].name, dataMusiciansList[i].birthdate, dataMusiciansList[i].roles, dataMusiciansList[i].info, dataMusiciansList[i].currentBands, dataMusiciansList[i].previousBands));
     }
   }
   
