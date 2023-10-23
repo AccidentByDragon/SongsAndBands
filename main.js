@@ -21,38 +21,11 @@ while (isRunning === true) {
   let userInput = Number(prompt(`Please choose one of the options above: `).trim())
   switch (userInput) {
     case 1:
-      console.log(`Please enter the following pieces of data:`);
-      const tempBandName = prompt(`the name of the band: `);
-      if (tempBandName.length === 0) {
-        console.log(`the Name you entered was too short, it must be atleast 1 symbol in length`);
-        break;
-      }
-      const tempBandDate = Number(prompt(`the year the band was formed: `));
-      if (tempBandDate === NaN || tempBandDate === null || tempBandDate === 0) {
-        console.log(`the Date you tried to enter was not a valid number, please enter it as a number higher than 0`);
-        break;
-      }
-      bandandMusicianList.addBand( tempBandName, tempBandDate);
+      addBandMenu();
       break;
     
     case 2:
-      console.log(`Please enter the following pieces of data:`);
-      const tempName = prompt(`the name of the musician: `);
-      if (tempName.length === 0) {
-        console.log(`the Name you entered was too short, it must be atleast 1 symbol in length`);
-        break;
-      }
-      const tempDate = Number(prompt(`the year the artist was born as a number: `));
-      if (tempDate == NaN || tempDate == null || tempDate == 0) {
-        console.log(`The date you tried to enter was not a valid number, please enter it as a number higher than 0`);
-        break;
-      }
-      const tempRole = prompt(`the roles/instruments the musician plays: `);
-      if (tempRole.length === 0) {
-        console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
-        break;
-      }
-      bandandMusicianList.addMusician(tempName, tempDate, tempRole);      
+      addMusicianMenu();
       break;
     
     case 3:
@@ -127,12 +100,12 @@ while (isRunning === true) {
   }
 }
 
-function addBandMenu() {
+function addBandMenu(bandMember = []) {
   let bandName = ``;
   let bandFounding = ``;
   let bandInfo = ``;
   let bandDisband = ``;
-  let bandCurMembers = [];
+  let bandCurMembers = bandMember;
   let isInBandMenu = true;
   while (isInBandMenu === true) {
     console.log(`
@@ -163,19 +136,68 @@ function addBandMenu() {
       case 5:
         addMusicianMenu();
         break;
+      case 6:
+        bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
+        isInBandMenu = false;
+        break;
       case 7:
         isInBandMenu = false;
         break;
       default:
         console.log(`The Number you entered was not a valid option`);
+        break;
     }
   }
 }
 
-function addMusicianMenu() {
+function addMusicianMenu(memberOf = []) {
+  let musicianName = ``;
+  let musicianBirthDate = ``;
+  let musicianInfo = ``;
+  let musicianRoles = [];
+  let musicianBands = memberOf;
   let isInMusicianMenu = true;
+  let menuMusicianInput = prompt();
   while (isInMusicianMenu === true) {
-    
+    console.log(`
+    Please fill the following:
+    Note: band membership can be left empty
+    1. Musician Name: ${musicianName}
+    2. Musician Birth date: ${musicianBirthDate}
+    3. Musician Info: ${musicianInfo}
+    4. Musician Roles: ${musicianRoles}
+    5. Member of Band(s): ${musicianBands}
+    6. Create Musician and return to Main Menu
+    7. Quit to main menu
+    `);
+    switch (menuMusicianInput) {
+      case 1:
+        musicianName = prompt(`Please enter the musicians name: `);
+        break;
+      case 2:
+        musicianBirthDate = prompt(`Please enter the musicans birthdate: `);
+        break;
+      case 3:
+        musicianInfo = prompt(`Please enter some info about the musican: `);
+        break;
+      case 4:
+        tempRole = prompt(`Please enter a role/instrument that the musician plays`)
+        musicianRoles.push(tempRole);
+        break;
+      case 5:
+        // addBandMenu(musicianBands);
+        // break;
+      case 6:
+        bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands);
+        isInMusicianMenu = false;
+        break;
+      case 7:
+        isInMusicianMenu = false;
+        break;
+      default:
+        console.log(`The Number you entered was not a valid option`);
+        break;
+    }
   }
   
 }
