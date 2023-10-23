@@ -85,7 +85,7 @@ function addBandMenu(bandMember = []) {
         bandDisband = prompt(`Please enter the year the band disbanded`);
         break;
       case 5:
-        //addMusicianMenu();
+        addMusicianMenu();
         break;
       case 6:
         bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
@@ -110,6 +110,7 @@ function addMusicianMenu(memberOf = []) {
   let isInMusicianMenu = true;
 
   while (isInMusicianMenu === true) {
+    let indexMusician = -1
     console.log(`
     Please fill the following:
     Note: band membership can be left empty
@@ -140,8 +141,8 @@ function addMusicianMenu(memberOf = []) {
         
         break;
       case 6:
-        bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands);
         isInMusicianMenu = false;
+        indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands);        
         break;
       case 7:
         isInMusicianMenu = false;
@@ -151,6 +152,7 @@ function addMusicianMenu(memberOf = []) {
         break;
     }
   }
+  return indexMusician;
   
 }
 

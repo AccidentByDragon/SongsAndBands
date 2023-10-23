@@ -35,6 +35,7 @@ export default class MusiciansAndBandsList {
     let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
+    return this.#musiciansList.length-1
   }
 
   readList() {
