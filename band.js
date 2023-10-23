@@ -43,7 +43,7 @@ export default class Band{
     }
   }
 
-  printInfoBand() {2
+  printInfoBand() {
     console.log(`
     Band name: ${this.nameBand},
     Founded in the year: ${this.yearFounding}

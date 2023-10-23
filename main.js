@@ -129,7 +129,7 @@ while (isRunning === true) {
 
 function addBandMenu() {
   let isInBandMenu = true;
-
+  
 }
 
 function addMusicianMenu() {
