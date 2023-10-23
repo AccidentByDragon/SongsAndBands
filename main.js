@@ -185,8 +185,8 @@ function addMusicianMenu(memberOf = []) {
         musicianRoles.push(tempRole);
         break;
       case 5:
-        // addBandMenu(musicianBands);
-        // break;
+        
+        break;
       case 6:
         bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands);
         isInMusicianMenu = false;
