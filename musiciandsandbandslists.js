@@ -133,10 +133,3 @@ export default class MusiciansAndBandsList {
     });
   }
 }
-
-  
-
-
-
-
-
