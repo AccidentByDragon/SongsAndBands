@@ -128,11 +128,54 @@ while (isRunning === true) {
 }
 
 function addBandMenu() {
+  let bandName = ``;
+  let bandFounding = ``;
+  let bandInfo = ``;
+  let bandDisband = ``;
+  let bandCurMembers = [];
   let isInBandMenu = true;
-  
+  while (isInBandMenu === true) {
+    console.log(`
+    Please fill the following:
+    Note: Year of band being disbanded can be left empty:
+    1. Band Name: ${bandName}
+    2. Band Founded: ${bandFounding}
+    3. Band Info: ${bandInfo}
+    4. Band Disbanded: ${bandDisband}
+    5. Band Members: ${bandCurMembers}
+    6. Create Band and return to Main Menu
+    7. Quit to main menu
+    `);
+    let bandMenuInput = Number(prompt(`Please choose an option to change: `));
+    switch (bandMenuInput) {
+      case 1:
+        bandName = prompt(`Please enter the bands name: `);
+        break;
+      case 2:
+        bandFounding = prompt(`Please enter the date of the bands founding either as a year or full date: `);
+        break;
+      case 3:
+        bandInfo = prompt(`Please Enter some Info about the band`);
+        break;
+      case 4:
+        bandDisband = prompt(`Please enter the year the band disbanded`);
+        break;
+      case 5:
+        addMusicianMenu();
+        break;
+      case 7:
+        isInBandMenu = false;
+        break;
+      default:
+        console.log(`The Number you entered was not a valid option`);
+    }
+  }
 }
 
 function addMusicianMenu() {
   let isInMusicianMenu = true;
+  while (isInMusicianMenu === true) {
+    
+  }
   
 }

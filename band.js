@@ -3,29 +3,29 @@ export default class Band{
   infoTextBand;
   yearFounding;
   yearDisbanding = NaN;
-  #listMembersCur;
-  #listPrevMembers;
+  listMembersCur;
+  listPrevMembers;
 
-  constructor(name, founding, info = ``, yearDisbanded = new Date().getFullYear(), curMembers=[], preMembers=[]) {
+  constructor(name, founding, info = ``, yearDisbanded = new Date(), curMembers=[], preMembers=[]) {
     this.nameBand = name;
     this.yearFounding = founding;
     this.infoTextBand = info;
-    this.#listMembersCur = curMembers;
-    this.#listPrevMembers = preMembers;
+    this.listMembersCur = curMembers;
+    this.listPrevMembers = preMembers;
     this.yearDisbanding = yearDisbanded;
   }
 
   addMemberExisting(musician, role, year) {
-    this.#listMembersCur.push(`${musician} was a member as a ${role}, they joined ${year}`)
+    this.listMembersCur.push(`${musician} was a member as a ${role}, they joined ${year}`)
   }
 
   findBandMember(nameToFind){
-    this.#listMembersCur.indexOf(element => element.includes(nameToFind));
+    this.listMembersCur.indexOf(element => element.includes(nameToFind));
   }
 
   makeFormerMember(formerMemberIndex, yearLeft) {
-    const tempString = (this.#listMembersCur.splice(formerMemberIndex - 1, 1).toString());
-    this.#listPrevMembers.push(`${tempString} and left the band, ${yearLeft}`);
+    const tempString = (this.listMembersCur.splice(formerMemberIndex - 1, 1).toString());
+    this.listPrevMembers.push(`${tempString} and left the band, ${yearLeft}`);
   }
 
   addInfo(info) {
@@ -38,8 +38,8 @@ export default class Band{
       "founded": this.yearFounding,
       "disbanded": this.yearDisbanding,
       "info": this.infoTextBand,
-      "currentMembers": this.#listMembersCur,
-      "previousMembers": this.#listPrevMembers
+      "currentMembers": this.listMembersCur,
+      "previousMembers": this.listPrevMembers
     }
   }
 
@@ -48,8 +48,8 @@ export default class Band{
     Band name: ${this.nameBand},
     Founded in the year: ${this.yearFounding}
     Active till: ${this.yearDisbanding}
-    Current Members: ${this.#listMembersCur}
-    Previous members: ${this.#listPrevMembers}
+    Current Members: ${this.listMembersCur}
+    Previous members: ${this.listPrevMembers}
     other info: ${this.infoTextBand}
     `)
   }
