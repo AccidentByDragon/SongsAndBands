@@ -26,17 +26,13 @@ export default class MusiciansAndBandsList {
     }
   }
   
-  addBand(nameBand, bandFounding) {
-    let tempBand = new Band(nameBand, bandFounding);
-    this.addInfoBand(tempBand);
+  addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers) {
+    let tempBand = new Band(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers);
     this.#bandsList.push(tempBand);
     this.#UpdateJsonFiles();
   }
-  addMusician(nameOfArtist, dateOfBirth, artistsRoles) {
-    let tempMusician = new Musician(nameOfArtist, dateOfBirth);
-    this.addInfoMusician(tempMusician);
-    this.addRolesMusician(tempMusician, artistsRoles);
-    console.log(artistsRoles);
+  addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands) {
+    let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
   }

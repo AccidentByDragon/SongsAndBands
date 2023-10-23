@@ -32,49 +32,21 @@ while (isRunning === true) {
       bandandMusicianList.readList();
       break;
     case 4:
-      MusicianToBand();
+      menuMusicianToBand();
       break;
     
     case 5:
-      console.log(`Please enter the following:`);
-      const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
-      if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0) {
-        console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
-        break;
-      }
-      const tempBandIndex = Number(prompt(`Please enter the index fo the band you wish to remove them from: `));
-      if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0) {
-        console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
-        break;
-      }
-      const tempPartingDate = Number(prompt(`Please enter the year they left the band: `));
-      if (tempPartingDate === NaN || tempPartingDate === null || tempPartingDate === 0) {
-        console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
-        break;
-      }
-      bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+      menuRemoveFromBand();
       break;
     case 6:
-      console.log(`Please enter the following: `);
-      const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `).toLowerCase();
-      if (tempListName != "band" && tempListName != "musician") {
-        console.log(`you must enter either band or musician`);
-        break;
-      }
-      const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
-      if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0) {
-        console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
-        break;
-      }
-      bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
+      menuDeleteBandOrMusician();
       break;
-    
     case 7:
       isRunning = false;
       break;
     
     default:
-      console.log(`Something went worng with your input or it does not exist please try again!`);
+      console.log(`Something went wrong with your input or it does not exist please try again!`);
       break;
   }
 }
@@ -161,7 +133,7 @@ function addMusicianMenu(memberOf = []) {
         musicianInfo = prompt(`Please enter some info about the musican: `);
         break;
       case 4:
-        tempRole = prompt(`Please enter a role/instrument that the musician plays`)
+        const tempRole = prompt(`Please enter a role/instrument that the musician plays.`)
         musicianRoles.push(tempRole);
         break;
       case 5:
@@ -182,7 +154,7 @@ function addMusicianMenu(memberOf = []) {
   
 }
 
-function MusicianToBand() {
+function menuMusicianToBand() {
   console.log(`Please enter the following:`);
   const tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
   if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
@@ -201,4 +173,34 @@ function MusicianToBand() {
     console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
   }
   bandandMusicianList.addMusicianToBand(tempMusicianAddIndex, tempBandAddIndex, tempBandRole, tempJoinYear);
+}
+
+function menuRemoveFromBand() {
+  console.log(`Please enter the following:`);
+  const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
+  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  }
+  const tempBandIndex = Number(prompt(`Please enter the index fo the band you wish to remove them from: `));
+  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  }
+  const tempPartingDate = Number(prompt(`Please enter the year they left the band: `));
+  if (tempPartingDate === NaN || tempPartingDate === null || tempPartingDate === 0) {
+    console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
+  }
+  bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+}
+
+function menuDeleteBandOrMusician() {
+  console.log(`Please enter the following: `);
+  const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `).toLowerCase();
+  if (tempListName != "band" && tempListName != "musician") {
+    console.log(`you must enter either band or musician`);
+  }
+  const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
+  if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  }
+  bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
 }
