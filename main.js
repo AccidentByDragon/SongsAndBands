@@ -32,28 +32,7 @@ while (isRunning === true) {
       bandandMusicianList.readList();
       break;
     case 4:
-      console.log(`Please enter the following:`);
-      const tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
-      if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
-        console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
-        break;
-      }
-      const tempBandAddIndex = Number(prompt(`please enter the index of the band to add the musician too: `));
-      if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
-        console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
-        break;
-      }
-      const tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
-      if (tempBandRole.length === 0) {
-        console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
-        break;
-      }
-      const tempJoinYear = Number(prompt(`Please enter the year the Musician joined the band: `));
-      if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
-        console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
-        break;
-      }
-      bandandMusicianList.addMusicianToBand(tempMusicianAddIndex,tempBandAddIndex, tempBandRole, tempJoinYear );
+      MusicianToBand();
       break;
     
     case 5:
@@ -134,7 +113,7 @@ function addBandMenu(bandMember = []) {
         bandDisband = prompt(`Please enter the year the band disbanded`);
         break;
       case 5:
-        addMusicianMenu();
+        //addMusicianMenu();
         break;
       case 6:
         bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
@@ -157,7 +136,7 @@ function addMusicianMenu(memberOf = []) {
   let musicianRoles = [];
   let musicianBands = memberOf;
   let isInMusicianMenu = true;
-  let menuMusicianInput = prompt();
+
   while (isInMusicianMenu === true) {
     console.log(`
     Please fill the following:
@@ -170,6 +149,7 @@ function addMusicianMenu(memberOf = []) {
     6. Create Musician and return to Main Menu
     7. Quit to main menu
     `);
+    let menuMusicianInput = Number(prompt());
     switch (menuMusicianInput) {
       case 1:
         musicianName = prompt(`Please enter the musicians name: `);
@@ -200,4 +180,25 @@ function addMusicianMenu(memberOf = []) {
     }
   }
   
+}
+
+function MusicianToBand() {
+  console.log(`Please enter the following:`);
+  const tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
+  if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+  }
+  const tempBandAddIndex = Number(prompt(`please enter the index of the band to add the musician too: `));
+  if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+  }
+  const tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
+  if (tempBandRole.length === 0) {
+    console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
+  }
+  const tempJoinYear = Number(prompt(`Please enter the year the Musician joined the band: `));
+  if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
+    console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
+  }
+  bandandMusicianList.addMusicianToBand(tempMusicianAddIndex, tempBandAddIndex, tempBandRole, tempJoinYear);
 }
