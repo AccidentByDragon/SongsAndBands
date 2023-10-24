@@ -73,24 +73,12 @@ export default class MusiciansAndBandsList {
     this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician - 1].nameMusician, bandRole, joinedYear);
     this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, bandRole, joinedYear);
     this.#UpdateJsonFiles();
-/*     if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 0 && indexMusician >= 0) {
-    }
-    else {
-      console.log(`One or more of the indexes you entered to add to a band does not exist in the list, please try again`);
-    } */
-
   }
 
   removeMusicanFormBand(indexMusician, indexBand, yearSplit) {
     this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician), yearSplit);
     this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
     this.#UpdateJsonFiles();
-/*     if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {      
-    }
-    else {
-      console.log(`One or more of the indexes you entered to remove form a band does not exist in the list, please try again`);
-    } */
-
   }
 
   deleteEntry(listToDeleteFrom,indexToDelete) {

@@ -109,7 +109,6 @@ function addMusicianMenu() {
   let musicianBirthDate = ``;
   let musicianInfo = ``;
   let musicianRoles = [];
-  //let musicianBands = [];
   let isInMusicianMenu = true;
   let indexMusician = -1
   while (isInMusicianMenu === true) {    
@@ -235,8 +234,7 @@ function menuRemoveFromBand() {
     console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
   }
   let isChoosing = true
-  while (isChoosing == true) {
-    //let deleteChoice = prompt(`You have chosen to remove ${bandandMusicianList[tempMusicianIndex - 1].readSpecifiedIndexMusician()} from ${bandandMusicianList[tempBandIndex - 1].readSpecifiedIndexBand()} are you sure? Y/N: `).toLowerCase();
+  while (isChoosing == true) {    
     let deleteChoice = prompt(`you have chosen to delete ${tempMusicianIndex} from ${tempBandIndex} are you sure? Y/N:`).toLowerCase();
     switch (deleteChoice) {
       case "y":
