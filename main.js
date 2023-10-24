@@ -79,21 +79,21 @@ function addBandMenu(bandMember = []) {
         bandFounding = prompt(`Please enter the date of the bands founding either as a year or full date: `);
         break;
       case 3:
-        bandInfo = prompt(`Please Enter some Info about the band`);
+        bandInfo = prompt(`Please Enter some Info about the band: `);
         break;
       case 4:
-        bandDisband = prompt(`Please enter the year the band disbanded`);
+        bandDisband = prompt(`Please enter the year the band disbanded: `);
         break;
       case 5:
         bandCurMembers.push(addMusicianMenu());
         break;
       case 6:
-        const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
+        const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband)
         for (let i = 0; i < bandCurMembers.length; i++) {
-          menuMusicianToBand(bandCurMembers[i], tempBandindex)
+          menuMusicianToBand(bandCurMembers[i]+1, tempBandindex+1)
         }
         isInBandMenu = false;
-        break;1
+        break;
       case 7:
         isInBandMenu = false;
         break;
@@ -109,7 +109,7 @@ function addMusicianMenu() {
   let musicianBirthDate = ``;
   let musicianInfo = ``;
   let musicianRoles = [];
-  let musicianBands = [];
+  //let musicianBands = [];
   let isInMusicianMenu = true;
   let indexMusician = -1
   while (isInMusicianMenu === true) {    
@@ -120,9 +120,8 @@ function addMusicianMenu() {
     2. Musician Birth date: ${musicianBirthDate}
     3. Musician Info: ${musicianInfo}
     4. Musician Roles: ${musicianRoles}
-    5. Member of Band(s): ${musicianBands}
-    6. Create Musician and return to Main Menu
-    7. Quit to main menu
+    5. Create Musician and return to Main Menu
+    6. Quit to main menu
     `);
     let menuMusicianInput = Number(prompt());
     switch (menuMusicianInput) {
@@ -140,13 +139,10 @@ function addMusicianMenu() {
         musicianRoles.push(tempRole);
         break;
       case 5:
-        
+        isInMusicianMenu = false;
+        indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles);        
         break;
       case 6:
-        isInMusicianMenu = false;
-        indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands);        
-        break;
-      case 7:
         isInMusicianMenu = false;
         break;
       default:
@@ -159,14 +155,14 @@ function addMusicianMenu() {
   
 }
 
-function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
+function menuMusicianToBand(inputmusicianIndex = 1, inputBandIndex = 1) {
   let isMenuMusician = true;
   let tempMusicianAddIndex = inputmusicianIndex;
   let tempBandAddIndex = inputBandIndex;
   let tempBandRole = ``
   let tempJoinYear = new Date().getFullYear();
   while (isMenuMusician == true) {
-    console.log(`Please choose one of the following:
+    console.log(`
     1: musician index = ${tempMusicianAddIndex}
     2: band Index = ${tempBandAddIndex}    
     3: Role in Band = ${tempBandRole}
@@ -175,29 +171,53 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
     6: Proceed to add band
     7: Quit
     `);
-  }
-  
-
-
-
-
-  tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
-  if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
-    console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
-  }
-  tempBandAddIndex = Number(prompt(`please enter the index of the band to add the musician too: `));
-  if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
-    console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
-  }
-  tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
-  if (tempBandRole.length === 0) {
-    console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
-  }
-  tempJoinYear = Number(prompt(`Please enter the year the Musician joined the band: `));
-  if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
-    console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
-  }
-  bandandMusicianList.addMusicianToBand(tempMusicianAddIndex, tempBandAddIndex, tempBandRole, tempJoinYear);
+    let menuChoicesBandMusician = Number(prompt(`Please choose one of the above:
+    ` ))
+    switch (menuChoicesBandMusician) {
+      case 1:
+        tempMusicianAddIndex = Number(prompt(`please enter the index of the musician you want to add: `))
+        break;
+      case 2:
+        tempBandAddIndex = Number(prompt(`please enter the band to add to index: `))
+        break;
+      case 3:
+        tempBandRole = prompt(`please enter the musicians role in the band: `)
+        break;
+      case 4:
+        tempJoinYear = Number(prompt(`please enter the year the musican joined the band: `))
+        break;
+      case 5:
+        bandandMusicianList.readSpecifiedIndexBand(tempBandAddIndex-1);
+        bandandMusicianList.readSpecifiedIndexMusician(tempMusicianAddIndex-1);
+        break;
+      case 6:
+       
+        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
+          console.log(`the musician index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+          break;
+        }
+        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
+          console.log(`the band index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+          break;
+        }
+        if (tempBandRole.length === 0) {
+          console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
+          break;
+        }
+        if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
+          console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
+        }
+        bandandMusicianList.addMusicianToBand(tempMusicianAddIndex, tempBandAddIndex, tempBandRole, tempJoinYear);
+        isMenuMusician = false
+        break;
+      case 7:
+        isMenuMusician = false
+        break;
+      default:
+        console.log(`the choice you made was not a valid entry: `);
+        break;
+    }
+  } 
 }
 
 function menuRemoveFromBand() {
@@ -214,7 +234,23 @@ function menuRemoveFromBand() {
   if (tempPartingDate === NaN || tempPartingDate === null || tempPartingDate === 0) {
     console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
   }
-  bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+  let isChoosing = true
+  while (isChoosing == true) {
+    //let deleteChoice = prompt(`You have chosen to remove ${bandandMusicianList[tempMusicianIndex - 1].readSpecifiedIndexMusician()} from ${bandandMusicianList[tempBandIndex - 1].readSpecifiedIndexBand()} are you sure? Y/N: `).toLowerCase();
+    let deleteChoice = prompt(`you have chosen to delete ${tempMusicianIndex} from ${tempBandIndex} are you sure? Y/N:`).toLowerCase();
+    switch (deleteChoice) {
+      case "y":
+        bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+        isChoosing = false;
+        break;
+      case "n":
+        isChoosing = false;
+        break;
+      default:
+        console.log(`you must enter either Y or N`);
+        break;
+    }
+  }  
 }
 
 function menuDeleteBandOrMusician() {
@@ -227,5 +263,21 @@ function menuDeleteBandOrMusician() {
   if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0) {
     console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
   }
-  bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
+  let isChoosing = true
+  while (isChoosing == true) {
+    let deleteChoice = prompt(`You have chosen to remove ${tempIndexInput - 1} from ${tempListName} are you sure? Y/N: `).toLowerCase();
+    switch (deleteChoice) {
+      case "y":
+        bandandMusicianList.deleteEntry(tempListName, tempIndexInput);
+        isChoosing = false;
+        break;
+      case "n":
+        isChoosing = false;
+        break;
+      default:
+        console.log(`you must enter either Y or N`);
+        break;
+    }
+  }  
+  
 }

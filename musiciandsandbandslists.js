@@ -16,9 +16,6 @@ export default class MusiciansAndBandsList {
   #fetchLists() {
     const jsonstringBands = fs.readFileSync("dataBands.json");
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
-    const jsonstringID = fs.readFileSync("idcustom.json")
-    // this.#uniqueID = jsonstringID[0];
-    // console.log(this.#uniqueID);
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
       this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].info, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
@@ -29,13 +26,13 @@ export default class MusiciansAndBandsList {
     }
   }
   
-  addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers) {
+  addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers=[]) {
     let tempBand = new Band(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers);
     this.#bandsList.push(tempBand);
     this.#UpdateJsonFiles();
     return this.#bandsList.length-1
   }
-  addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands) {
+  addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands= []) {
     let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
@@ -73,26 +70,26 @@ export default class MusiciansAndBandsList {
   }
 
   addMusicianToBand(indexMusician, indexBand, bandRole, joinedYear) {
-    if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {
-      this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician - 1].nameMusician, bandRole, joinedYear);
-      this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, bandRole, joinedYear);
-      this.#UpdateJsonFiles();
+    this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician - 1].nameMusician, bandRole, joinedYear);
+    this.#musiciansList[indexMusician - 1].addBand(this.#bandsList[indexMusician - 1].nameBand, bandRole, joinedYear);
+    this.#UpdateJsonFiles();
+/*     if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 0 && indexMusician >= 0) {
     }
     else {
       console.log(`One or more of the indexes you entered to add to a band does not exist in the list, please try again`);
-    }
+    } */
 
   }
 
   removeMusicanFormBand(indexMusician, indexBand, yearSplit) {
-    if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {
-      this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician),yearSplit);
-      this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
-      this.#UpdateJsonFiles();
+    this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician), yearSplit);
+    this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
+    this.#UpdateJsonFiles();
+/*     if (indexBand <= this.#bandsList.length && indexMusician <= this.#musiciansList && indexBand >= 1 && indexMusician >= 1) {      
     }
     else {
       console.log(`One or more of the indexes you entered to remove form a band does not exist in the list, please try again`);
-    }
+    } */
 
   }
 
