@@ -16,6 +16,9 @@ export default class MusiciansAndBandsList {
   #fetchLists() {
     const jsonstringBands = fs.readFileSync("dataBands.json");
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
+    const jsonstringID = fs.readFileSync("idcustom.json")
+    // this.#uniqueID = jsonstringID[0];
+    // console.log(this.#uniqueID);
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
       this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].info, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
@@ -30,6 +33,7 @@ export default class MusiciansAndBandsList {
     let tempBand = new Band(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers);
     this.#bandsList.push(tempBand);
     this.#UpdateJsonFiles();
+    return this.#bandsList.length-1
   }
   addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands) {
     let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands);
@@ -48,6 +52,23 @@ export default class MusiciansAndBandsList {
     for (let i = 0; i < this.#musiciansList.length; i++) {
       console.log(`${i + 1}: ${this.#musiciansList[i].nameMusician}`);
       this.#musiciansList[i].printInfoMusician();
+    }
+  }
+
+  readSpecifiedIndexBand(indexToReadBand = this.#bandsList.length+1) {
+    if (indexToReadBand < this.#bandsList.length) {
+      this.#bandsList[indexToReadBand].printInfoBand();
+    }
+    else {
+      console.log(`Band Index was incorrect`);
+    }    
+  }
+  readSpecifiedIndexMusician(indexToReadMusician = this.#musiciansList.length+1 ) {
+    if (indexToReadMusician < this.#musiciansList.length) {
+      this.#musiciansList[indexToReadMusician].printInfoMusician();
+    }
+    else {
+      console.log(`Musician index was incorrect`);
     }
   }
 

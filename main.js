@@ -85,12 +85,15 @@ function addBandMenu(bandMember = []) {
         bandDisband = prompt(`Please enter the year the band disbanded`);
         break;
       case 5:
-        addMusicianMenu();
+        bandCurMembers.push(addMusicianMenu());
         break;
       case 6:
-        bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
+        const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers)
+        for (let i = 0; i < bandCurMembers.length; i++) {
+          menuMusicianToBand(bandCurMembers[i], tempBandindex)
+        }
         isInBandMenu = false;
-        break;
+        break;1
       case 7:
         isInBandMenu = false;
         break;
@@ -101,16 +104,15 @@ function addBandMenu(bandMember = []) {
   }
 }
 
-function addMusicianMenu(memberOf = []) {
+function addMusicianMenu() {
   let musicianName = ``;
   let musicianBirthDate = ``;
   let musicianInfo = ``;
   let musicianRoles = [];
-  let musicianBands = memberOf;
+  let musicianBands = [];
   let isInMusicianMenu = true;
-
-  while (isInMusicianMenu === true) {
-    let indexMusician = -1
+  let indexMusician = -1
+  while (isInMusicianMenu === true) {    
     console.log(`
     Please fill the following:
     Note: band membership can be left empty
@@ -134,7 +136,7 @@ function addMusicianMenu(memberOf = []) {
         musicianInfo = prompt(`Please enter some info about the musican: `);
         break;
       case 4:
-        const tempRole = prompt(`Please enter a role/instrument that the musician plays.`)
+        const tempRole = prompt(`Please enter a role/instrument that the musician plays: `)
         musicianRoles.push(tempRole);
         break;
       case 5:
@@ -152,25 +154,46 @@ function addMusicianMenu(memberOf = []) {
         break;
     }
   }
+  console.log(indexMusician);
   return indexMusician;
   
 }
 
-function menuMusicianToBand() {
-  console.log(`Please enter the following:`);
-  const tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
+function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
+  let isMenuMusician = true;
+  let tempMusicianAddIndex = inputmusicianIndex;
+  let tempBandAddIndex = inputBandIndex;
+  let tempBandRole = ``
+  let tempJoinYear = new Date().getFullYear();
+  while (isMenuMusician == true) {
+    console.log(`Please choose one of the following:
+    1: musician index = ${tempMusicianAddIndex}
+    2: band Index = ${tempBandAddIndex}    
+    3: Role in Band = ${tempBandRole}
+    4: Year joined = ${tempJoinYear}
+    5: check indexes
+    6: Proceed to add band
+    7: Quit
+    `);
+  }
+  
+
+
+
+
+  tempMusicianAddIndex = Number(prompt(`Please enter the index of the musician you wish to add to a band: `));
   if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
     console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
   }
-  const tempBandAddIndex = Number(prompt(`please enter the index of the band to add the musician too: `));
+  tempBandAddIndex = Number(prompt(`please enter the index of the band to add the musician too: `));
   if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
     console.log(`the index you tried to enter was not a valid number, please enter it as a number higher than 0`);
   }
-  const tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
+  tempBandRole = prompt(`Please enter the role the Musician had in the band: `);
   if (tempBandRole.length === 0) {
     console.log(`The name of the Role/Instrument was too short, it must be atleast 1 symbol long`);
   }
-  const tempJoinYear = Number(prompt(`Please enter the year the Musician joined the band: `));
+  tempJoinYear = Number(prompt(`Please enter the year the Musician joined the band: `));
   if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
     console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
   }
