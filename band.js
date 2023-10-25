@@ -5,14 +5,12 @@ export default class Band{
   yearDisbanding = NaN;
   listMembersCur;
   listPrevMembers;
-  ID;
 
-  constructor(name, founding, info = ``, yearDisbanded = new Date(), curMembers=[],id, preMembers=[]) {
+  constructor(name, founding, info = ``, yearDisbanded = new Date(), curMembers=[], preMembers=[]) {
     this.nameBand = name;
     this.yearFounding = founding;
     this.infoTextBand = info;
     this.listMembersCur = curMembers;
-    this.ID = id;
     this.listPrevMembers = preMembers;
     this.yearDisbanding = yearDisbanded;
   }

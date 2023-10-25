@@ -6,14 +6,12 @@ export default class Musician{
   #curBandsList;
   #prevBandList;
   instruments;
-  ID;
 
-  constructor(name, birthdate, roles = [], info = "", curBands = [], id, preBands = []) {
+  constructor(name, birthdate, roles = [], info = "", curBands = [], preBands = []) {
     this.nameMusician = name;
     this.birthYear = birthdate;
     this.instruments = roles;
     this.infoTextMusician = info;
-    this.ID = id;
     this.#curBandsList = curBands;
     this.#prevBandList = preBands;
     this.updateAge();
