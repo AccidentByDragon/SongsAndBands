@@ -66,7 +66,7 @@ function addBandMenu(bandMember = []) {
     2. Band Founded: ${bandFounding}
     3. Band Info: ${bandInfo}
     4. Band Disbanded: ${bandDisband}
-    5. Band Members: ${bandCurMembers}
+    5. Band Members: ${bandCurMembers.length}
     6. Create Band and return to Main Menu
     7. Quit to main menu
     `);
@@ -85,15 +85,42 @@ function addBandMenu(bandMember = []) {
         bandDisband = prompt(`Please enter the year the band disbanded: `);
         break;
       case 5:
-        bandCurMembers.push(addMusicianMenu());
-        break;
-      case 6:
-        const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband)
-        for (let i = 0; i < bandCurMembers.length; i++) {
-          menuMusicianToBand(bandCurMembers[i]+1, tempBandindex+1)
+        console.log(`Do you wish to create a new musican to add to the band or add an existing musician to the band?:
+        1. Create a new musican: 
+        2. Add an existing musican: 
+        `);
+        const choiceAddMembers = Number(prompt(`Which do you want to do?: `))
+        if (choiceAddMembers == "1") {
+          bandCurMembers.push(addMusicianMenu());
+          console.log(`you will be able to add the muscian you created to the band upon creating the band`);
         }
-        isInBandMenu = false;
+        else if (choiceAddMembers == "2") {
+          bandCurMembers.push(1);
+          console.log(`you will be asked to fill in the necisary info to add an existing musican to the band on creating the band`);
+        }
+        else {
+          console.log(`the choice you made was neither 1 or 2, please try again`);
+        }
         break;
+      case 6:       
+        if (bandCurMembers.length <= 0) {
+          console.log(`the band must have members to be created!`);
+          break;
+        }     
+        if (bandName.length > 0 && bandFounding > 4) {
+          const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband)
+          for (let i = 0; i < bandCurMembers.length; i++) {
+            menuMusicianToBand(bandCurMembers[i]+1, tempBandindex+1)
+          }
+          isInBandMenu = false;
+          break;
+        }
+        else {
+          console.log(`the Band must have a name, current name: ${bandName} and a founding year current:${bandFounding}`);
+          isInBandMenu = true;
+          break;
+        }
+
       case 7:
         isInBandMenu = false;
         break;
@@ -138,9 +165,18 @@ function addMusicianMenu() {
         musicianRoles.push(tempRole);
         break;
       case 5:
-        isInMusicianMenu = false;
-        indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles);        
-        break;
+        if (musicianName.length>0 && musicianBirthDate.length >4 &&musicianRoles.length >0) {
+          isInMusicianMenu = false;
+          indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles);        
+          break;
+        } else {
+          console.log(
+          `the musician must have a name current:${musicianName}
+          the musican must have a valid year of birth current:${musicianBirthDate}
+          the musician must have has atleast a role curretn number of roles: ${musicianRoles.length}`);
+          isInMusicianMenu = true;
+          break;
+        }
       case 6:
         isInMusicianMenu = false;
         break;
@@ -154,12 +190,14 @@ function addMusicianMenu() {
   
 }
 
-function menuMusicianToBand(inputmusicianIndex = 1, inputBandIndex = 1) {
+function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
   let isMenuMusician = true;
   let tempMusicianAddIndex = inputmusicianIndex;
   let tempBandAddIndex = inputBandIndex;
   let tempBandRole = ``
   let tempJoinYear = new Date().getFullYear();
+  const tempMaxIndexBands = bandandMusicianList.listLengthBands;
+  const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   while (isMenuMusician == true) {
     console.log(`
     1: musician index = ${tempMusicianAddIndex}
@@ -191,12 +229,12 @@ function menuMusicianToBand(inputmusicianIndex = 1, inputBandIndex = 1) {
         break;
       case 6:
        
-        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0) {
-          console.log(`the musician index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0 || tempMusicianAddIndex > tempMaxIndexMusicans+1) {
+          console.log(`the musician index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexMusicans}`);
           break;
         }
-        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0) {
-          console.log(`the band index you tried to enter was not a valid number, please enter it as a number higher than 0`);
+        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0 || tempMaxIndexBands > tempMaxIndexBands+1) {
+          console.log(`the band index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexBands}`);
           break;
         }
         if (tempBandRole.length === 0) {
@@ -205,6 +243,7 @@ function menuMusicianToBand(inputmusicianIndex = 1, inputBandIndex = 1) {
         }
         if (tempJoinYear === NaN || tempJoinYear === null || tempJoinYear === 0) {
           console.log(`the date you tried to enter was not a valid number, please enter it as a number higher than 0`);
+          break;
         }
         bandandMusicianList.addMusicianToBand(tempMusicianAddIndex, tempBandAddIndex, tempBandRole, tempJoinYear);
         isMenuMusician = false
@@ -220,14 +259,18 @@ function menuMusicianToBand(inputmusicianIndex = 1, inputBandIndex = 1) {
 }
 
 function menuRemoveFromBand() {
+  const tempMaxIndexBands = bandandMusicianList.listLengthBands;
+  const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   console.log(`Please enter the following:`);
   const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
-  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0) {
-    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0 || tempMusicianIndex > tempMaxIndexMusicans+1) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexMusicans}`);
+    return;
   }
   const tempBandIndex = Number(prompt(`Please enter the index fo the band you wish to remove them from: `));
-  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0) {
-    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0 || tempMaxIndexBands > tempMaxIndexBands+1) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexBands}`);
+    return;
   }
   const tempPartingDate = Number(prompt(`Please enter the year they left the band: `));
   if (tempPartingDate === NaN || tempPartingDate === null || tempPartingDate === 0) {
@@ -253,17 +296,31 @@ function menuRemoveFromBand() {
 
 function menuDeleteBandOrMusician() {
   console.log(`Please enter the following: `);
+  const tempMaxIndexBands = bandandMusicianList.listLengthBands;
+  const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `).toLowerCase();
   if (tempListName != "band" && tempListName != "musician") {
     console.log(`you must enter either band or musician`);
+    return;
   }
   const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
-  if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0) {
-    console.log(`the index you tried to enter was not a valid number, please enter it as a number`);
+  if (tempListName === "band") {
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexBands+1)
+    {
+      console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexBands}`);
+      return;
+    }
   }
+  if (tempListName === "musician") {
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexMusicans+1)
+    {
+      console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexMusicans}`);
+      return;
+    }
+  }    
   let isChoosing = true
   while (isChoosing == true) {
-    let deleteChoice = prompt(`You have chosen to remove ${tempIndexInput - 1} from ${tempListName} are you sure? Y/N: `).toLowerCase();
+    let deleteChoice = prompt(`You have chosen to remove ${tempIndexInput} from ${tempListName} are you sure? Y/N: `).toLowerCase();
     switch (deleteChoice) {
       case "y":
         bandandMusicianList.deleteEntry(tempListName, tempIndexInput);

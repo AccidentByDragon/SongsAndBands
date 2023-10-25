@@ -83,7 +83,7 @@ export default class MusiciansAndBandsList {
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
     if (listToDeleteFrom === "band") {
-      if (indexToDelete <= this.#bandsList.length && indexToDelete >= 1) {
+      if (indexToDelete <= this.#bandsList.length && indexToDelete >= 0) {
         this.#bandsList.splice(indexToDelete -1, 1)
         this.#UpdateJsonFiles();
       }
@@ -92,7 +92,7 @@ export default class MusiciansAndBandsList {
       }
     }
     else if (listToDeleteFrom === "musician") {
-      if (indexToDelete <= this.#musiciansList.length && indexToDelete >= 1){
+      if (indexToDelete <= this.#musiciansList.length && indexToDelete >= 0){
         this.#musiciansList.splice(indexToDelete -1, 1)
         this.#UpdateJsonFiles();
       }
@@ -139,4 +139,13 @@ export default class MusiciansAndBandsList {
       console.log(`data written to file`)
     });
   }
+
+  get listLengthBands() {
+    return this.#bandsList.length;
+  }
+
+  get listLengthMusicians() {
+    return this.#musiciansList.length;
+  }
+
 }

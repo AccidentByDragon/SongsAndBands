@@ -53,5 +53,4 @@ export default class Band{
     other info: ${this.infoTextBand}
     `)
   }
-
 }
