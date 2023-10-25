@@ -1,13 +1,1 @@
-[
-  {
-    "name": "Bob",
-    "info": "BOb",
-    "birthdate": "2002",
-    "roles": [
-      "Singer"
-    ],
-    "currentBands": [],
-    "id": 0,
-    "previousBands": []
-  }
-]
+[]
