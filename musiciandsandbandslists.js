@@ -8,7 +8,7 @@ const prompt = PromptSync({ sigint: true });
 export default class MusiciansAndBandsList {
   #bandsList = [];
   #musiciansList = [];
-
+  #uniqueIDs = 0;
   constructor() {
     this.#fetchLists();
   }
@@ -16,24 +16,29 @@ export default class MusiciansAndBandsList {
   #fetchLists() {
     const jsonstringBands = fs.readFileSync("dataBands.json");
     const jsonstringMusicians = fs.readFileSync("datamusicians.json")
+    const jsonstringIDs = fs.readFileSync("uniqueIDs.json")
     const dataBandsList = JSON.parse(jsonstringBands);    
     for (let i = 0; i < dataBandsList.length; i++) {
-      this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].info, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].previousMembers));      
+      this.#bandsList.push(new Band(dataBandsList[i].name, dataBandsList[i].founded, dataBandsList[i].info, dataBandsList[i].disbanded, dataBandsList[i].currentMembers, dataBandsList[i].id, dataBandsList[i].previousMembers));      
     }
     const dataMusiciansList = JSON.parse(jsonstringMusicians);
     for (let i = 0; i < dataMusiciansList.length; i++) {
-      this.#musiciansList.push(new Musician(dataMusiciansList[i].name, dataMusiciansList[i].birthdate, dataMusiciansList[i].roles, dataMusiciansList[i].info, dataMusiciansList[i].currentBands, dataMusiciansList[i].previousBands));
+      this.#musiciansList.push(new Musician(dataMusiciansList[i].name, dataMusiciansList[i].birthdate, dataMusiciansList[i].roles, dataMusiciansList[i].info, dataMusiciansList[i].currentBands, dataMusiciansList[i].id, dataMusiciansList[i].previousBands));
     }
+    const dataUniqueIDs = JSON.parse(jsonstringIDs);
+    this.#uniqueIDs = dataUniqueIDs;
   }
   
-  addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers=[]) {
-    let tempBand = new Band(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers);
+  addBand(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers = []) {
+    let tempId = this.#uniqueIDs++
+    let tempBand = new Band(bandName, bandFounding, bandInfo, bandDisband, bandCurMembers, tempId);
     this.#bandsList.push(tempBand);
     this.#UpdateJsonFiles();
     return this.#bandsList.length-1
   }
-  addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands= []) {
-    let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands);
+  addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles, musicianBands = []) {
+    let tempId = this.#uniqueIDs++
+    let tempMusician = new Musician(musicianName, musicianBirthDate, musicianRoles, musicianInfo, musicianBands, tempId);
     this.#musiciansList.push(tempMusician);
     this.#UpdateJsonFiles();
     return this.#musiciansList.length-1
@@ -130,11 +135,16 @@ export default class MusiciansAndBandsList {
     for (let i = 0; i < this.#musiciansList.length; i++) {
       tempMusicianList.push(this.#musiciansList[i].fetchInfo());        
     }
+    let tempIDs = this.#uniqueIDs;
     fs.writeFileSync('dataBands.json', JSON.stringify(tempBandList, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });
     fs.writeFileSync('datamusicians.json', JSON.stringify(tempMusicianList, null, 2), (err) => {
+      if (err) throw err;
+      console.log(`data written to file`)
+    });
+    fs.writeFileSync(`uniqueIDs.json`, JSON.stringify(tempIDs, null, 2), (err) => {
       if (err) throw err;
       console.log(`data written to file`)
     });

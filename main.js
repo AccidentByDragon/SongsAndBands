@@ -107,7 +107,7 @@ function addBandMenu(bandMember = []) {
           console.log(`the band must have members to be created!`);
           break;
         }     
-        if (bandName.length > 0 && bandFounding > 4) {
+        if (bandName.length > 0 && bandFounding >= 4) {
           const tempBandindex = bandandMusicianList.addBand(bandName, bandFounding, bandInfo, bandDisband)
           for (let i = 0; i < bandCurMembers.length; i++) {
             menuMusicianToBand(bandCurMembers[i]+1, tempBandindex+1)
@@ -165,7 +165,7 @@ function addMusicianMenu() {
         musicianRoles.push(tempRole);
         break;
       case 5:
-        if (musicianName.length>0 && musicianBirthDate.length >4 &&musicianRoles.length >0) {
+        if (musicianName.length>0 && musicianBirthDate.length >=4 &&musicianRoles.length >0) {
           isInMusicianMenu = false;
           indexMusician = bandandMusicianList.addMusician(musicianName, musicianBirthDate, musicianInfo, musicianRoles);        
           break;
@@ -185,7 +185,6 @@ function addMusicianMenu() {
         break;
     }
   }
-  console.log(indexMusician);
   return indexMusician;
   
 }
