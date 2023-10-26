@@ -308,14 +308,14 @@ function menuDeleteBandOrMusician() {
   }
   const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
   if (tempListName === "band") {
-    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexBands+1)
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexBands)
     {
       console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexBands}`);
       return;
     }
   }
   if (tempListName === "musician") {
-    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexMusicans+1)
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexMusicans)
     {
       console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexMusicans}`);
       return;
