@@ -36,6 +36,10 @@ export default class Band{
     return this.listMembersCur.length;
   }
 
+  get prevBandMembersLength() {
+    return this.listPrevMembers.length;
+  }
+
   fetchInfoBand() {
     return {
       "name": this.nameBand,

@@ -43,8 +43,9 @@ export default class MusiciansAndBandsList {
   bandMemberCheck() {
     for (let i = 0; i < this.#bandsList.length; i++) {
       const tempCheckNumber = this.#bandsList[i].bandMembersLength;
-      console.log(`Checking if Band has more than 0 members current members: ${tempCheckNumber}`);
-      if (tempCheckNumber < 1) {
+      const tempCheckNumber2 = this.#bandsList[i].prevBandMembersLength;
+      console.log(`Checking if Band has more than 0 members or previous members, current members: ${tempCheckNumber}, previous members: ${tempCheckNumber2}`);
+      if ((tempCheckNumber < 1) && (tempCheckNumber2 < 1)) {
         this.#AutoDeleteBands(i)
       }
     }
