@@ -56,4 +56,7 @@ export default class Band{
     other info: ${this.infoTextBand}
     `)
   }
+  get bandMembersLength() {
+    return this.listMembersCur.length;
+  }
 }
