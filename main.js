@@ -228,11 +228,11 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
         break;
       case 6:
        
-        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0 || tempMusicianAddIndex > tempMaxIndexMusicans+1) {
+        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0 || tempMusicianAddIndex > tempMaxIndexMusicans) {
           console.log(`the musician index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexMusicans}`);
           break;
         }
-        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0 || tempMaxIndexBands > tempMaxIndexBands+1) {
+        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0 || tempMaxIndexBands > tempMaxIndexBands) {
           console.log(`the band index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexBands}`);
           break;
         }
@@ -262,12 +262,12 @@ function menuRemoveFromBand() {
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   console.log(`Please enter the following:`);
   const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
-  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0 || tempMusicianIndex > tempMaxIndexMusicans+1) {
+  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0 || tempMusicianIndex > tempMaxIndexMusicans) {
     console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexMusicans}`);
     return;
   }
   const tempBandIndex = Number(prompt(`Please enter the index fo the band you wish to remove them from: `));
-  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0 || tempMaxIndexBands > tempMaxIndexBands+1) {
+  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0 || tempBandIndex > tempMaxIndexBands) {
     console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexBands}`);
     return;
   }
@@ -276,12 +276,15 @@ function menuRemoveFromBand() {
     console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
   }
   let isChoosing = true
-  while (isChoosing == true) {    
+  while (isChoosing == true) {
     let deleteChoice = prompt(`you have chosen to delete ${tempMusicianIndex} from ${tempBandIndex} are you sure? Y/N:`).toLowerCase();
     switch (deleteChoice) {
       case "y":
-        bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
-        isChoosing = false;
+        if ((tempBandIndex <= tempMaxIndexBands) && (tempMusicianIndex <= tempMaxIndexMusicans)) {
+          bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+          bandandMusicianList.bandMemberCheck();
+          isChoosing = false;
+        }
         break;
       case "n":
         isChoosing = false;
@@ -290,7 +293,7 @@ function menuRemoveFromBand() {
         console.log(`you must enter either Y or N`);
         break;
     }
-  }  
+  }
 }
 
 function menuDeleteBandOrMusician() {
