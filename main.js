@@ -228,11 +228,11 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
         break;
       case 6:
        
-        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0 || tempMusicianAddIndex > tempMaxIndexMusicans+1) {
+        if (tempMusicianAddIndex === NaN || tempMusicianAddIndex === null || tempMusicianAddIndex === 0 || tempMusicianAddIndex > tempMaxIndexMusicans) {
           console.log(`the musician index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexMusicans}`);
           break;
         }
-        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0 || tempMaxIndexBands > tempMaxIndexBands+1) {
+        if (tempBandAddIndex === NaN || tempBandAddIndex === null || tempBandAddIndex === 0 || tempMaxIndexBands > tempMaxIndexBands) {
           console.log(`the band index you tried to enter was not a valid number, please enter it as a number higher than 0 but less than or equal to ${tempMaxIndexBands}`);
           break;
         }
