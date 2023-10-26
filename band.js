@@ -32,6 +32,10 @@ export default class Band{
     this.infoTextBand = info;
   }
 
+  get bandMembersLength(){
+    return this.listMembersCur.length;
+  }
+
   fetchInfoBand() {
     return {
       "name": this.nameBand,

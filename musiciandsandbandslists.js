@@ -40,6 +40,16 @@ export default class MusiciansAndBandsList {
     return this.#musiciansList.length-1
   }
 
+  bandMemberCheck() {
+    for (let i = 0; i < this.#bandsList.length; i++) {
+      const tempCheckNumber = this.#bandsList[i].bandMembersLength;
+      console.log(`Checking if Band has more than 0 members current members: ${tempCheckNumber}`);
+      if (tempCheckNumber < 1) {
+        this.#AutoDeleteBands(i)
+      }
+    }
+  }
+
   readList() {
     console.log(`Here are the currently stored Bands`)
     for (let i = 0; i < this.#bandsList.length; i++) {
@@ -80,6 +90,13 @@ export default class MusiciansAndBandsList {
     this.#bandsList[indexBand - 1].makeFormerMember(this.#bandsList[indexBand - 1].findBandMember(this.#musiciansList[indexMusician - 1].nameMusician), yearSplit);
     this.#musiciansList[indexMusician - 1].removeBand(this.#musiciansList[indexMusician - 1].findBand(this.#bandsList[indexBand - 1].nameBand), yearSplit);
     this.#UpdateJsonFiles();
+  }
+
+  #AutoDeleteBands(deleteIndex) {
+    console.log(`the following Band at index ${deleteIndex + 1} was deleted automatically for having no band members`);
+    this.#bandsList[deleteIndex].printInfoBand();
+    this.#bandsList.splice(deleteIndex, 1)
+    this.#UpdateJsonFiles();    
   }
 
   deleteEntry(listToDeleteFrom,indexToDelete) {
