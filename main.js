@@ -199,6 +199,7 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
     console.log(`One of the lists is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
+    bandandMusicianList.bandMemberCheck();
     return;
   }    
   while (isMenuMusician == true) {
@@ -267,6 +268,7 @@ function menuRemoveFromBand() {
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
   if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
     console.log(`One of the lists is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
+    bandandMusicianList.bandMemberCheck();
     return;
   }    
   console.log(`Please enter the following:`);
