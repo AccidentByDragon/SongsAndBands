@@ -73,6 +73,17 @@ export default class MusiciansAndBandsList {
       console.log(`Musician index was incorrect`);
     }
   }
+  
+  bandMemberCheck() {
+    for (let i = 0; i < this.#bandsList.length; i++) {
+      const tempCheckNumber = this.#bandsList[i].bandMembersLength;
+      console.log(`Checking if Band has more than 0 members current members: ${tempCheckNumber}`);
+      if (tempCheckNumber < 1) {
+        this.#AutoDeleteBands(i)
+      }
+    }
+  }
+
 
   addMusicianToBand(indexMusician, indexBand, bandRole, joinedYear) {
     this.#bandsList[indexBand - 1].addMemberExisting(this.#musiciansList[indexMusician - 1].nameMusician, bandRole, joinedYear);
@@ -123,6 +134,13 @@ export default class MusiciansAndBandsList {
   addInfoMusician(musician) {
     const newMusicianInfo = prompt(`Please enter some information about the musician: `)
     musician.addInfo(newMusicianInfo);
+  }
+
+  #AutoDeleteBands(deleteIndex) {
+    console.log(`the following Band at index ${deleteIndex + 1} was deleted automatically for having no band members`);
+    this.#bandsList[deleteIndex].printInfoBand();
+    this.#bandsList.splice(deleteIndex, 1)
+    this.#UpdateJsonFiles();
   }
 
 
