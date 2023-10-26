@@ -197,6 +197,10 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
   let tempJoinYear = new Date().getFullYear();
   const tempMaxIndexBands = bandandMusicianList.listLengthBands;
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
+  if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
+    console.log(`One of the lsits is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
+    return;
+  }    
   while (isMenuMusician == true) {
     console.log(`
     1: musician index = ${tempMusicianAddIndex}
@@ -261,6 +265,10 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
 function menuRemoveFromBand() {
   const tempMaxIndexBands = bandandMusicianList.listLengthBands;
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
+  if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
+    console.log(`One of the lsits is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
+    return;
+  }    
   console.log(`Please enter the following:`);
   const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
   if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0 || tempMusicianIndex > tempMaxIndexMusicans) {
@@ -301,6 +309,10 @@ function menuDeleteBandOrMusician() {
   console.log(`Please enter the following: `);
   const tempMaxIndexBands = bandandMusicianList.listLengthBands;
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
+  if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
+    console.log(`One of the lsits is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
+    return;
+  }    
   const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `).toLowerCase();
   if (tempListName != "band" && tempListName != "musician") {
     console.log(`you must enter either band or musician`);
