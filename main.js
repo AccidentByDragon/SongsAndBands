@@ -309,10 +309,6 @@ function menuDeleteBandOrMusician() {
   console.log(`Please enter the following: `);
   const tempMaxIndexBands = bandandMusicianList.listLengthBands;
   const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
-  if (tempMaxIndexMusicans == 0 || tempMaxIndexBands == 0) {
-    console.log(`One of the lsits is empty, Band List indexes ${tempMaxIndexBands}, Musician list indexes ${tempMaxIndexMusicans}`);
-    return;
-  }    
   const tempListName = prompt(`Please enter which list you want to remove from, musician or band: `).toLowerCase();
   if (tempListName != "band" && tempListName != "musician") {
     console.log(`you must enter either band or musician`);
@@ -320,19 +316,23 @@ function menuDeleteBandOrMusician() {
   }
   const tempIndexInput = prompt(`Please enter the Index of what you wish to delete: `);
   if (tempListName === "band") {
-    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexBands)
-    {
+    if (tempMaxIndexBands == 0) {
+      console.log(`the band lists is empty numebr of band indexes: ${tempMaxIndexBands}`);
+    }
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexBands) {
       console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexBands}`);
       return;
     }
   }
   if (tempListName === "musician") {
-    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexMusicans)
-    {
+    if (tempMaxIndexMusicans == 0) {
+      console.log(`the musician lists is empty number of musician indexes: ${tempMaxIndexMusicans}`);
+    }
+    if (tempIndexInput === NaN || tempIndexInput === null || tempIndexInput === 0 || tempIndexInput > tempMaxIndexMusicans) {
       console.log(`the index you tried to enter was not a valid number or does not exist in the list, please enter it as a number less than or equal to ${tempMaxIndexMusicans}`);
       return;
     }
-  }    
+  }
   let isChoosing = true
   while (isChoosing == true) {
     let deleteChoice = prompt(`You have chosen to remove ${tempIndexInput} from ${tempListName} are you sure? Y/N: `).toLowerCase();
@@ -348,5 +348,5 @@ function menuDeleteBandOrMusician() {
         console.log(`you must enter either Y or N`);
         break;
     }
-  }  
+  }
 }
