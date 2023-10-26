@@ -258,6 +258,44 @@ function menuMusicianToBand(inputmusicianIndex = 0, inputBandIndex = 0) {
   }
 }
 
+function menuRemoveFromBand() {
+  const tempMaxIndexBands = bandandMusicianList.listLengthBands;
+  const tempMaxIndexMusicans = bandandMusicianList.listLengthMusicians;
+  console.log(`Please enter the following:`);
+  const tempMusicianIndex = Number(prompt(`Please enter the index of the musician you want to remove from a band: `));
+  if (tempMusicianIndex === NaN || tempMusicianIndex === null || tempMusicianIndex === 0 || tempMusicianIndex > tempMaxIndexMusicans) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexMusicans}`);
+    return;
+  }
+  const tempBandIndex = Number(prompt(`Please enter the index fo the band you wish to remove them from: `));
+  if (tempBandIndex === NaN || tempBandIndex === null || tempBandIndex === 0 || tempBandIndex > tempMaxIndexBands) {
+    console.log(`the index you tried to enter was not a valid number, please enter it as a number greater than 0 but less than or equal to ${tempMaxIndexBands}`);
+    return;
+  }
+  const tempPartingDate = Number(prompt(`Please enter the year they left the band: `));
+  if (tempPartingDate === NaN || tempPartingDate === null || tempPartingDate === 0) {
+    console.log(`the date you tried to enter was not a valid number, please enter it as a number`);
+  }
+  let isChoosing = true
+  while (isChoosing == true) {
+    let deleteChoice = prompt(`you have chosen to delete ${tempMusicianIndex} from ${tempBandIndex} are you sure? Y/N:`).toLowerCase();
+    switch (deleteChoice) {
+      case "y":
+        if ((tempBandIndex <= tempMaxIndexBands) && (tempMusicianIndex <= tempMaxIndexMusicans)) {
+          bandandMusicianList.removeMusicanFormBand(tempMusicianIndex, tempBandIndex, tempPartingDate);
+          bandandMusicianList.bandMemberCheck();
+          isChoosing = false;
+        }
+        break;
+      case "n":
+        isChoosing = false;
+        break;
+      default:
+        console.log(`you must enter either Y or N`);
+        break;
+    }
+  }
+}
 
 function menuDeleteBandOrMusician() {
   console.log(`Please enter the following: `);
